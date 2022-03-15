@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheet434.css">
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="phase11" class="left">
+            <div id="fourYearPlan"></div>
+            <div id="fypAddEdit">
+                <button onclick="" id="addYearButton">+ Add Year +</button>
+            </div>
+        </div>
+        <div id="phase12" class="right">
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        let data = [{
+            year: 'one',
+            fall: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            winter: ['cmsc131'],
+            spring: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            summer: ['geog100', 'stat400']
+        }, {
+            year: 'two',
+            fall: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            winter: ['cmsc131'],
+            spring: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            summer: ['geog100', 'stat400']
+        }, {
+            year: 'three',
+            fall: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            winter: ['cmsc131'],
+            spring: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            summer: ['geog100', 'stat400']
+        }, {
+            year: 'four',
+            fall: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            winter: ['cmsc131'],
+            spring: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            summer: ['geog100', 'stat400']
+        }, {
+            year: 'five',
+            fall: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            winter: ['cmsc131'],
+            spring: ['cmsc131', 'math140', 'amst100', 'geog100', 'stat400'],
+            summer: ['geog100', 'stat400']
+        }];
+
+        const toAdd = document.getElementById("fourYearPlan");
+
+        data.forEach((item) => {
+
+            const tab = document.createElement("table");
+            tab.id += item + "Table";
+            tab.className += "yearTable";
+
+            const t_body = document.createElement("tbody");
+            t_body.id += item.year + "Tbody";
+            t_body.className += "yearTableBody";
+
+            const tr1 = document.createElement("tr");
+            tr1.id += item.year + "Tr1";
+            tr1.className += "yearTableRow";
+
+            const tr2 = document.createElement("tr");
+            tr2.id += item.year + "Tr2";
+            tr2.className += "yearTableRow";
+
+            toAdd.appendChild(tab)
+            tab.appendChild(t_body)
+            t_body.appendChild(tr1)
+            t_body.appendChild(tr2)
+
+            //semesters
+
+            //Fall
+            const fall = document.createElement("td");
+            fall.id += item.year + "_Fall";
+            fall.className += "semester";
+            fall.innerHTML = "<button class='semesterButton' onclick = ''>" + item.year + "_Fall</button>";
+            tr1.appendChild(fall)
+
+            const fallClasses = document.createElement("ul");
+            fallClasses.id += item.year + "_fallClasses";
+            fallClasses.class += "classes";
+            fall.appendChild(fallClasses);
+
+            item.fall.forEach((className) => {
+                    let li = document.createElement("li");
+                    li.innerText = className;
+                    li.class += "classItem";
+                    fallClasses.appendChild(li);
+                })
+                //end Fall
+
+            //winter
+            const winter = document.createElement("td");
+            winter.id += item.year + "_Winter";
+            winter.innerHTML = "<button class='semesterButton' onclick = ''>" + item.year + "_Winter</button>";
+            winter.className += "semester";
+            tr1.appendChild(winter)
+
+            const winterClasses = document.createElement("ul");
+            winterClasses.id += item.year + "_winterClasses";
+            winterClasses.class += "classes";
+            winter.appendChild(winterClasses);
+
+            item.winter.forEach((className) => {
+                    let li = document.createElement("li");
+                    li.innerText = className;
+                    li.class += "classItem";
+                    winterClasses.appendChild(li);
+                })
+                //end winter
+
+            //spring
+            const spring = document.createElement("td");
+            spring.id += item.year + "_Spring";
+            spring.innerHTML = "<button class='semesterButton' onclick = ''>" + item.year + "_Spring</button>";
+            spring.className += "semester";
+            tr2.appendChild(spring)
+
+            const springClasses = document.createElement("ul");
+            springClasses.id += item.year + "_springClasses";
+            springClasses.class += "classes";
+            spring.appendChild(springClasses);
+
+            item.spring.forEach((className) => {
+                    let li = document.createElement("li");
+                    li.innerText = className;
+                    li.class += "classItem";
+                    springClasses.appendChild(li);
+                })
+                //end spring
+
+            //summer
+            const summer = document.createElement("td");
+            summer.id += item.year + "_Summer";
+            summer.innerHTML = "<button class='semesterButton' onclick = ''>" + item.year + "_Summer</button>";
+            summer.className += "semester";
+            tr2.appendChild(summer)
+
+            const summerClasses = document.createElement("ul");
+            summerClasses.id += item.year + "_summerClasses";
+            summerClasses.class += "classes";
+            summer.appendChild(summerClasses);
+
+            item.summer.forEach((className) => {
+                    let li = document.createElement("li");
+                    li.innerText = className;
+                    li.class += "classItem";
+                    summerClasses.appendChild(li);
+                })
+                //end summer
+        })
+    </script>
+</body>
+
+
+</html>
