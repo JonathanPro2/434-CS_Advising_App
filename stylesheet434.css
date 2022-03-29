@@ -69,12 +69,12 @@ body {
 }
 
 #fypAddEdit {
-    height: 9%;
+    height: 10%;
 }
 
 #addYearButton {
-    height: 90%;
-    align-content: center;
+    margin-top: 10px;
+    margin-bottom: auto;
 }
 
 
