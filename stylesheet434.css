@@ -84,4 +84,54 @@ body {
     height: 98%;
     margin-top: auto;
     margin-bottom: auto;
+    overflow-y: auto;
+}
+
+#phase12::-webkit-scrollbar {
+    display: none;
+}
+
+.degreeAuditSpan {
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+}
+
+.degreeAuditButton {
+    width: 49%;
+    padding: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin: 0%;
+}
+
+.degreeAuditTable {
+    width: 90%;
+}
+
+.degreeAuditRow {
+    margin: 0;
+}
+
+.degreeAuditCheckmarksTitle {
+    text-align: center;
+}
+
+.degreeAuditCheckmarks {
+    width: 10%;
+    padding: 1%;
+}
+
+.degreeAuditCheckmarksList {
+    list-style-type: none;
+}
+
+.degreeAuditData {
+    width: 85%;
+}
+
+.degreeAuditDataList {
+    padding: 0%;
+    padding-left: 2%;
+    list-style-type: none;
 }
