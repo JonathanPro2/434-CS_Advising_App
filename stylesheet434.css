@@ -91,7 +91,7 @@ body {
     display: none;
 }
 
-.degreeAuditSpan {
+.degreeAuditClassRecButtons {
     width: 100%;
     margin: 0%;
     padding: 0%;
@@ -115,6 +115,7 @@ body {
 
 .degreeAuditCheckmarksTitle {
     text-align: center;
+    width: 110%;
 }
 
 .degreeAuditCheckmarks {
@@ -124,6 +125,7 @@ body {
 
 .degreeAuditCheckmarksList {
     list-style-type: none;
+    width: 110%;
 }
 
 .degreeAuditData {
@@ -142,6 +144,6 @@ body {
 }
 
 .checkIconBody {
-    width: 150%;
-    height: 150%;
+    width: 100%;
+    height: 100%;
 }

@@ -20,11 +20,11 @@
             </div>
         </div>
         <div id="phase12" class="right">
+            <span class="degreeAuditClassRecButtons btn-group">
+                <button class='degreeAuditButton btn btn-block btn-danger btn-outline-warning' onclick = "switchToDegreeAudit()">Degree Audit</button>
+                <button class='degreeAuditButton btn btn-block btn-danger btn-outline-warning' onclick = "switchToClassRec()">Class Recommendations</button>
+            </span>
             <div id="degreeAudit">
-                <span class="degreeAuditSpan">
-                    <button class='degreeAuditButton' onclick = ''>Degree Audit</button>
-                    <button class='degreeAuditButton' onclick = ''>Class Recommendations</button>
-                </span>
                 <table class="degreeAuditTable">
                     <tr class="degreeAuditRow">
                         <td class="degreeAuditCheckmarks">
@@ -193,6 +193,9 @@
                         </td>
                     </tr>
                 </table>
+            </div>
+            <div id="classRec" style="display: none">
+                <h1>Craig you can put your code for the class recommendations here</h1>
             </div>
         </div>
     </div>
@@ -371,6 +374,20 @@
 
         function initializeAuditMap() {
             requirements.forEach(ele => auditMap.set(ele, false));
+        }
+
+        function switchToDegreeAudit() {
+            let editor = document.getElementById(`classRec`);
+            editor.style = "display: none";
+            editor = document.getElementById(`degreeAudit`);
+            editor.style = "display: block";
+        }
+
+        function switchToClassRec() {
+            let editor = document.getElementById(`degreeAudit`);
+            editor.style = "display: none";
+            editor = document.getElementById(`classRec`);
+            editor.style = "display: block";
         }
 
     </script>
