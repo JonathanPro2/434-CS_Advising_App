@@ -20,15 +20,15 @@
             </div>
         </div>
         <div id="phase12" class="right">
-            <span class="degreeAuditClassRecButtons btn-group">
-                <button class='degreeAuditButton btn btn-block btn-danger btn-outline-warning' onclick = "switchToDegreeAudit()">Degree Audit</button>
-                <button class='degreeAuditButton btn btn-block btn-danger btn-outline-warning' onclick = "switchToClassRec()">Class Recommendations</button>
+            <span class="degreeAuditClassRecButtons btn-group position-fixed">
+                <button id="degreeAuditButton" class='degreeAuditClassRecButton btn btn-warning' onclick = "switchToDegreeAudit()">Degree Audit</button>
+                <button id="classRecButton" class='degreeAuditClassRecButton btn btn-danger' onclick = "switchToClassRec()">Class Recommendations</button>
             </span>
             <div id="degreeAudit">
                 <table class="degreeAuditTable">
                     <tr class="degreeAuditRow">
                         <td class="degreeAuditCheckmarks">
-                            <h4 class="degreeAuditCheckmarksTitle"><img src="resources/x.png" alt="X" class="checkIconTitle"></h4>
+                            <h4 id="degreeAuditAllLower" class="degreeAuditCheckmarksTitle"><img src="resources/x.png" alt="X" class="checkIconTitle"></h4>
                             <ul class="degreeAuditCheckmarksList">
                                 <li id="degreeAuditCMSC131"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                                 <li id="degreeAuditCMSC132"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
@@ -235,7 +235,7 @@
         let requirements = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATH400",
                             "Upper1", "Upper2", "Upper3", "Upper4", "Upper5", "Elective1", "Elective2", "UpperConcentration1", "UpperConcentration2", 
                             "UpperConcentration3", "UpperConcentration4", "UpperConcentration5", "FSAW", "FSPW", "FSOC", "FSMA", "FSAR", "DSHU", "DSHS", 
-                            "DSNL", "DSNS", "DSSP", "I1", "I2", "DVUP", "DVCC"];
+                            "DSNL", "DSNS", "DSSP", "I1", "I2", "DVUP", "DVCC", "AllLower", "AllUpper"];
         let classesTaken = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATH400"];
         let auditMap = new Map();
 
@@ -364,12 +364,18 @@
         function updateAudit() {
             classesTaken.forEach(ele => {
                 if(ele == "CMSC131" || ele == "CMSC132" || ele == "CMSC216" || ele == "CMSC250" || ele == "CMSC330" || ele == "CMSC351" || 
-                    ele == "MATH140" || ele == "MATH141" || ele == "STAT400" || ele == "MATH400" ) {
+                    ele == "MATH140" || ele == "MATH141" || ele == "STAT400" || ele == "MATH400") {
                     let editor = document.getElementById(`degreeAudit${ele}`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"X\" class=\"checkIconBody\">";
                     auditMap.set(ele, true);
                 }
             });
+            if(auditMap.get("CMSC131") && auditMap.get("CMSC132") && auditMap.get("CMSC216") && auditMap.get("CMSC250") && auditMap.get("CMSC330") && 
+                auditMap.get("CMSC351") && auditMap.get("MATH140") && auditMap.get("MATH141") && auditMap.get("STAT400") && auditMap.get("MATH400")) {
+                let editor = document.getElementById(`degreeAuditAllLower`);
+                editor.innerHTML = "<img src=\"resources/check.png\" alt=\"X\" class=\"checkIconTitle\">";
+                auditMap.set(`AllLower`, true);
+            }
         }
 
         function initializeAuditMap() {
@@ -381,6 +387,10 @@
             editor.style = "display: none";
             editor = document.getElementById(`degreeAudit`);
             editor.style = "display: block";
+            editor = document.getElementById(`degreeAuditButton`);
+            editor.className = "degreeAuditClassRecButton btn btn-warning"
+            editor = document.getElementById(`classRecButton`);
+            editor.className = "degreeAuditClassRecButton btn btn-danger"
         }
 
         function switchToClassRec() {
@@ -388,6 +398,10 @@
             editor.style = "display: none";
             editor = document.getElementById(`classRec`);
             editor.style = "display: block";
+            editor = document.getElementById(`degreeAuditButton`);
+            editor.className = "degreeAuditClassRecButton btn btn-danger"
+            editor = document.getElementById(`classRecButton`);
+            editor.className = "degreeAuditClassRecButton btn btn-warning"
         }
 
     </script>
