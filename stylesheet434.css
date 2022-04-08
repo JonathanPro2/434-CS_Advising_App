@@ -142,12 +142,27 @@ body {
 
 #fypAddEdit {
     height: 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5%, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(25%, 1fr));
 }
 
 #addYearButton {
-    margin-top: 10px;
-    margin-bottom: auto;
+    grid-column-start: 2;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-row-end: 4;
 }
+
+#deleteYearButton {
+    grid-column-start: 12;
+    grid-column-end: 20;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+
+/* alert css */
 
 
 /* primary PHASE 1.2 CSS */

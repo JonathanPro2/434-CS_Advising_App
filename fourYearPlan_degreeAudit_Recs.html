@@ -16,7 +16,8 @@
         <div id="phase11" class="left">
             <div id="fourYearPlan"></div>
             <div id="fypAddEdit">
-                <button onclick="" type="button" id="addYearButton" class="btn btn-danger">+ Add Year +</button>
+                <button onclick="addNewYear()" type="button" id="addYearButton" class="btn btn-danger">Add New Year</button>
+                <button onclick="deleteLatestYear()" type="button" id="deleteYearButton" class="btn btn-danger">Delete Latest Year</button>
             </div>
         </div>
         <div id="phase12" class="right">
@@ -220,7 +221,7 @@
                 classId: 'math140',
                 credits: '4'
             }, {
-                classId: 'FSAW',
+                classId: 'engl101',
                 credits: '3'
             }, {
                 classId: 'clas170',
@@ -373,19 +374,44 @@
         let auditMap = new Map();
 
         function doOnLoad() {
-            createFourYearPlan(fourYearPlanData);
+            createFourYearPlan();
             initializeAuditMap();
             updateAudit();
         }
 
-        // function addYear() {
-        //     newYear = {
-        //         year:
-        //     }
+
+        // function navToSemesterView() {
+
         // }
 
+        function addNewYear() {
 
-        function createFourYearPlan(fourYearPlanData) {
+            yearNumber = fourYearPlanData.length + 1
+
+            newYear = {
+                year: 'Year ' + yearNumber,
+                fall: [],
+                winter: [],
+                spring: [],
+                summer: []
+            }
+
+            fourYearPlanData.push(newYear)
+            document.getElementById("fourYearPlan").scrollTop = 0
+            alert("New year added to four year plan!")
+            createFourYearPlan()
+        }
+
+
+        function deleteLatestYear() {
+            fourYearPlanData.pop()
+            document.getElementById("fourYearPlan").scrollTop = 0
+            alert("Latest year removed from four year plan!")
+            createFourYearPlan()
+        }
+
+
+        function createFourYearPlan() {
 
             document.getElementById("fourYearPlan").innerHTML = "";
             const toAdd = document.getElementById("fourYearPlan");
