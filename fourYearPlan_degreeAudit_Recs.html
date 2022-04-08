@@ -213,34 +213,148 @@
     <script type="text/javascript">
         let fourYearPlanData = [{
             year: 'Freshman',
-            fall: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            winter: ['CMSC131'],
-            spring: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            summer: ['GEOG100', 'STAT400']
+            fall: [{
+                classId: 'cmsc131',
+                credits: '4'
+            }, {
+                classId: 'math140',
+                credits: '4'
+            }, {
+                classId: 'FSAW',
+                credits: '3'
+            }, {
+                classId: 'clas170',
+                credits: '3'
+            }, {
+                classId: 'univ100',
+                credits: '1'
+            }],
+            winter: [],
+            spring: [{
+                classId: 'cmsc132',
+                credits: '4'
+            }, {
+                classId: 'math141',
+                credits: '4'
+            }, {
+                classId: 'astr100',
+                credits: '3'
+            }, {
+                classId: 'comm107',
+                credits: '3'
+            }, {
+                classId: 'gvpt170',
+                credits: '3'
+            }],
+            summer: []
         }, {
             year: 'Sophomore',
-            fall: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            winter: ['CMSC131'],
-            spring: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            summer: ['GEOG100', 'STAT400']
+            fall: [{
+                classId: 'cmsc216',
+                credits: '4'
+            }, {
+                classId: 'cmsc250',
+                credits: '4'
+            }, {
+                classId: 'math241',
+                credits: '4'
+            }, {
+                classId: 'enes140',
+                credits: '3'
+            }],
+            winter: [],
+            spring: [{
+                classId: 'cmsc330',
+                credits: '3'
+            }, {
+                classId: 'cmsc351',
+                credits: '3'
+            }, {
+                classId: 'hisp200',
+                credits: '3'
+            }, {
+                classId: 'stat400',
+                credits: '3'
+            }, {
+                classId: 'psyc100',
+                credits: '3'
+            }],
+            summer: []
         }, {
             year: 'Junior',
-            fall: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            winter: ['CMSC131'],
-            spring: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            summer: ['GEOG100', 'STAT400']
+            fall: [{
+                classId: 'cmsc436',
+                credits: '3'
+            }, {
+                classId: 'enes210',
+                credits: '3'
+            }, {
+                classId: 'stat401',
+                credits: '3'
+            }, {
+                classId: 'phys121',
+                credits: '4'
+            }],
+            winter: [{
+                classId: 'cmsc388A',
+                credits: '1'
+            }, {
+                classId: 'cmsc388B',
+                credits: '1'
+            }],
+            spring: [{
+                classId: 'cmsc320',
+                credits: '3'
+            }, {
+                classId: 'cmsc389E',
+                credits: '1'
+            }, {
+                classId: 'amst101',
+                credits: '3'
+            }, {
+                classId: 'stat430',
+                credits: '3'
+            }, {
+                classId: 'engl393',
+                credits: '3'
+            }, {
+                classId: 'math461',
+                credits: '3'
+            }],
+            summer: [{
+                classId: 'cmsc451',
+                credits: '3'
+            }]
         }, {
             year: 'Senior',
-            fall: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            winter: ['CMSC131'],
-            spring: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            summer: ['GEOG100', 'STAT400']
-        }, {
-            year: 'Fifth Year',
-            fall: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            winter: ['CMSC131'],
-            spring: ['CMSC131', 'MATH140', 'AMST100', 'GEOG100', 'STAT400'],
-            summer: ['GEOG100', 'STAT400']
+            fall: [{
+                classId: 'cmsc420',
+                credits: '3'
+            }, {
+                classId: 'ccjs100',
+                credits: '3'
+            }, {
+                classId: 'engl321',
+                credits: '3'
+            }, {
+                classId: 'stat410',
+                credits: '3'
+            }],
+            winter: [],
+            spring: [{
+                classId: 'cmsc434',
+                credits: '3'
+            }, {
+                classId: 'cmsc424',
+                credits: '3'
+            }, {
+                classId: 'math401',
+                credits: '3'
+            }, {
+                classId: 'musc205',
+                credits: '3'
+            }],
+            summer: []
         }];
 
         // List of all CMSC graduation requirements
@@ -313,9 +427,10 @@
                 fallClasses.className += "classes list-group list-group-flush";
                 fall.appendChild(fallClasses);
 
-                item.fall.forEach((className) => {
+                item.fall.forEach((classItem) => {
                         let li = document.createElement("li");
-                        li.innerText = className;
+                        li.innerText = classItem.classId;
+                        li.innerHTML += '<span class="credits badge badge-primary badge-pill">' + classItem.credits + '</span>'
                         li.className += "classItem list-group-item";
                         fallClasses.appendChild(li);
                     })
@@ -333,9 +448,10 @@
                 winterClasses.className += "classes list-group list-group-flush";
                 winter.appendChild(winterClasses);
 
-                item.winter.forEach((className) => {
+                item.winter.forEach((classItem) => {
                         let li = document.createElement("li");
-                        li.innerText = className;
+                        li.innerText = classItem.classId;
+                        li.innerHTML += '<span class="credits badge badge-primary badge-pill">' + classItem.credits + '</span>'
                         li.className += "classItem list-group-item";
                         winterClasses.appendChild(li);
                     })
@@ -353,9 +469,10 @@
                 springClasses.className += "classes list-group list-group-flush";
                 spring.appendChild(springClasses);
 
-                item.spring.forEach((className) => {
+                item.spring.forEach((classItem) => {
                         let li = document.createElement("li");
-                        li.innerText = className;
+                        li.innerText = classItem.classId;
+                        li.innerHTML += '<span class="credits badge badge-primary badge-pill">' + classItem.credits + '</span>'
                         li.className += "classItem list-group-item";
                         springClasses.appendChild(li);
                     })
@@ -373,9 +490,10 @@
                 summerClasses.className += "classes list-group list-group-flush";
                 summer.appendChild(summerClasses);
 
-                item.summer.forEach((className) => {
+                item.summer.forEach((classItem) => {
                         let li = document.createElement("li");
-                        li.innerText = className;
+                        li.innerText = classItem.classId;
+                        li.innerHTML += '<span class="credits badge badge-primary badge-pill">' + classItem.credits + '</span>'
                         li.className += "classItem list-group-item";
                         summerClasses.appendChild(li);
                     })

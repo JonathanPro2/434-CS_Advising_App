@@ -127,6 +127,19 @@ body {
     font-size: larger;
 }
 
+.classItem {
+    display: flex!important;
+    -webkit-box-pack: justify!important;
+    -ms-flex-pack: justify!important;
+    justify-content: space-between!important;
+    align-items: center;
+}
+
+.credits {
+    background-color: #ffd200;
+    color: #000000;
+}
+
 #fypAddEdit {
     height: 10%;
 }
