@@ -230,5 +230,18 @@ body {
     height: 100%;
 }
 
+.dashIconTitle {
+    width: 50%;
+    height: 50%;
+}
+
+.dashIconBody {
+    width: 100%;
+    height: 100%;
+}
+
+.addClassRecButtons {
+    width: 20%;
+}
 
 /* Craig Phase CSS */
