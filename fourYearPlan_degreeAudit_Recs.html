@@ -14,10 +14,37 @@
 
     <div id="main">
         <div id="phase11" class="left">
-            <div id="fourYearPlan"></div>
-            <div id="fypAddEdit">
-                <button onclick="addNewYear()" type="button" id="addYearButton" class="btn btn-danger">Add New Year</button>
-                <button onclick="deleteLatestYear()" type="button" id="deleteYearButton" class="btn btn-danger">Delete Latest Year</button>
+
+            <!-- 4 year plan -->
+            <div id="fourYearPlanDiv">
+                <div id="fourYearPlan"></div>
+                <div id="fypAddEdit">
+                    <button onclick="addNewYear()" type="button" id="addYearButton" class="btn btn-danger">Add New Year</button>
+                    <button onclick="deleteLatestYear()" type="button" id="deleteYearButton" class="btn btn-danger">Delete Latest Year</button>
+                </div>
+            </div>
+
+            <!-- semester edit -->
+            <div id="semesterEditDiv" style="display: none">
+                <div id="semesterEdit">
+
+                    <h1 id="semesterEditHead">Semester Classes</h1>
+
+                    <div id="semesterEditClassListDiv" class="border border-danger">
+
+                    </div>
+
+                    <input type="text" id="semesterEditClassInput" placeholder="CMSCXXX">
+                    <p id="classEntryText">Enter a class id above</p>
+                    <p id="semesterEditSemesterTag">Semester: </p>
+                    <p id="semesterEditYearTag">Year: </p>
+
+                    <button onclick="addClassToSemesterList()" type="button" id="addClassSemesterEdit" class="btn btn-danger">Add Class</button>
+
+
+                    <button onclick="switchToFourYearPlanView()" type="button" id="cancelEditButton" class="btn btn-danger">Cancel Edits</button>
+                    <button onclick="addClassesToFourYearPlan()" type="button" id="saveEditButton" class="btn btn-danger">Save Edits</button>
+                </div>
             </div>
         </div>
         <div id="phase12" class="right">
@@ -214,6 +241,11 @@
         </div>
     </div>
     <script type="text/javascript">
+        let semesterEditYear
+        let semesterEditSemester
+
+        var tempSemesterList = []
+
         let fourYearPlanData = [{
             year: 'Freshman',
             fall: [{
@@ -375,7 +407,7 @@
         ];
         // Map that stores booleans for whether or not a requirement is currently fulfilled
         let auditMap = new Map();
-        
+
         let classRecData = [{
             type: 'Lower Level Electives',
             classes: [{
@@ -404,9 +436,6 @@
         }
 
 
-        // function navToSemesterView() {
-
-        // }
 
         function addNewYear() {
 
@@ -433,116 +462,116 @@
             alert("Latest year removed from four year plan!")
             createFourYearPlan()
         }
-        
-        
+
+
         function createClassRec() {
             document.getElementById("classRec").innerHTML = "";
             const toAdd = document.getElementById("classRec");
             //toAdd.innerHTML = "Choose your needed category:"
-            
+
             const tab = document.createElement("table");
             tab.id += "OverallTable";
             tab.className += "degreeAuditTable";
-                                         
+
             const years = [];
             fourYearPlanData.forEach((item) => {
                 years.push(item.year);
             })
-                                         
-            const sems = ["Fall", "Spring", "Winter", "Summer"];   
+
+            const sems = ["Fall", "Spring", "Winter", "Summer"];
             const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
-            
+
             classRecData.forEach((item) => {
-                
+
                 //Row for each section
                 const indivRow = document.createElement("tr");
                 indivRow.id += item.type + "Tr";
                 indivRow.className += "degreeAuditRow";
-                
+
                 const drop = document.createElement("select");
                 drop.name = "Category";
                 drop.id = "Category" + item;
                 drop.className += 'classRecDropdown';
-                
+
                 categories.forEach((category) => {
-                        const valu = document.createElement("option");
-                        valu.value += category;
-                        valu.innerText = category;
-                        
-                        drop.appendChild(valu)
-                    })
-                
-            
+                    const valu = document.createElement("option");
+                    valu.value += category;
+                    valu.innerText = category;
+
+                    drop.appendChild(valu)
+                })
+
+
                 //Block within section
                 const indivData = document.createElement("td");
                 indivData.id += item.type + "indivData";
                 indivData.className += "degreeAuditData";
                 indivData.innerHTML = "<h4 class = 'classRecTitle'>" + item.type + "</h4>";
-                
+
                 //List of classes
                 const dataList = document.createElement("ul");
                 dataList.id = item.type + "dataList";
                 dataList.className += "degreeAuditDataList list-group list-group-flush";
-                
+
                 //Each class element
                 item.classes.forEach((clas) => {
-                    
+
                     const classOutput = document.createElement("li");
                     classOutput.className += "classRecLI list-group-item";
                     classOutput.innerText = clas.classId;
-                    
-                    
+
+
                     const semesters = document.createElement("select");
                     semesters.name = "Semester";
                     semesters.id = "Semester" + clas;
-                    
+
                     const yrs = document.createElement("select");
                     yrs.name = "Year";
                     yrs.id = "Year" + clas;
-                    
+
                     sems.forEach((semester) => {
                         const valu = document.createElement("option");
                         valu.value += semester;
                         valu.innerText = semester;
-                        
+
                         semesters.appendChild(valu)
                     })
-                    
+
                     years.forEach((year) => {
                         const valu = document.createElement("option");
                         valu.value += year;
                         valu.innerText = year;
-                        
+
                         yrs.appendChild(valu)
                     })
-                    
+
                     classOutput.appendChild(semesters)
                     classOutput.appendChild(yrs)
-                    
+
                     const butt = document.createElement("button");
                     butt.innerText = "Add";
                     butt.id += "classRecButton" + clas;
                     butt.className += 'addClassRecButtons btn btn-danger';
                     butt.onclick = "switchToClassRec()";
-                    
+
                     classOutput.appendChild(butt)
-                    
+
                     dataList.appendChild(classOutput)
                 })
-                
-                
-                
+
+
+
                 tab.appendChild(indivRow)
                 indivRow.appendChild(indivData)
-                
+
                 indivData.appendChild(dataList)
                 toAdd.appendChild(drop)
             })
-            
+
             toAdd.appendChild(tab)
-            
+
         }
-        
+
         function createFourYearPlan() {
 
             document.getElementById("fourYearPlan").innerHTML = "";
@@ -577,13 +606,37 @@
                 const fall = document.createElement("td");
                 fall.id += item.year + "_Fall";
                 fall.className += "semester";
-                fall.innerHTML = "<button class='semesterButton btn btn-danger btn-block' onclick = ''>" + item.year + " Fall</button>";
+
+                const changeViewFallButton = document.createElement("button")
+                changeViewFallButton.className += "semesterButton btn btn-danger btn-block"
+                changeViewFallButton.innerHTML = item.year + " Fall"
+
+                changeViewFallButton.onclick = function() {
+                    let editor = document.getElementById('fourYearPlanDiv')
+                    editor.style = "display: none";
+                    editor = document.getElementById('semesterEditDiv');
+                    editor.style = "display: block";
+                    semesterEditSemester = 'fall'
+                    semesterEditYear = item.year
+
+                    editor = document.getElementById("semesterEditSemesterTag")
+                    editor.innerHTML = "Semester: Fall"
+
+                    editor = document.getElementById("semesterEditYearTag")
+                    editor.innerHTML = "Year: " + semesterEditYear
+
+                    createSemesterView(item.fall)
+                }
+                fall.appendChild(changeViewFallButton)
+
+
                 tr1.appendChild(fall)
 
                 const fallClasses = document.createElement("ul");
                 fallClasses.id += item.year + "_fallClasses";
                 fallClasses.className += "classes list-group list-group-flush";
                 fall.appendChild(fallClasses);
+
 
                 item.fall.forEach((classItem) => {
                         let li = document.createElement("li");
@@ -597,8 +650,31 @@
                 //winter
                 const winter = document.createElement("td");
                 winter.id += item.year + "_Winter";
-                winter.innerHTML = "<button class='semesterButton btn btn-danger btn-block' onclick = ''>" + item.year + " Winter</button>";
                 winter.className += "semester";
+
+                const changeViewWinterButton = document.createElement("button")
+                changeViewWinterButton.className += "semesterButton btn btn-danger btn-block"
+                changeViewWinterButton.innerHTML = item.year + " Winter"
+
+                changeViewWinterButton.onclick = function() {
+                    let editor = document.getElementById('fourYearPlanDiv')
+                    editor.style = "display: none";
+                    editor = document.getElementById('semesterEditDiv');
+                    editor.style = "display: block";
+                    semesterEditSemester = 'winter'
+                    semesterEditYear = item.year
+
+                    editor = document.getElementById("semesterEditSemesterTag")
+                    editor.innerHTML = "Semester: Winter"
+
+                    editor = document.getElementById("semesterEditYearTag")
+                    editor.innerHTML = "Year: " + semesterEditYear
+
+                    createSemesterView(item.winter)
+                }
+                winter.appendChild(changeViewWinterButton)
+
+
                 tr1.appendChild(winter)
 
                 const winterClasses = document.createElement("ul");
@@ -618,8 +694,32 @@
                 //spring
                 const spring = document.createElement("td");
                 spring.id += item.year + "_Spring";
-                spring.innerHTML = "<button class='semesterButton btn btn-danger btn-block' onclick = ''>" + item.year + " Spring</button>";
                 spring.className += "semester";
+
+                const changeViewSpringButton = document.createElement("button")
+                changeViewSpringButton.className += "semesterButton btn btn-danger btn-block"
+                changeViewSpringButton.innerHTML = item.year + " Spring"
+
+                changeViewSpringButton.onclick = function() {
+                    let editor = document.getElementById('fourYearPlanDiv')
+                    editor.style = "display: none";
+                    editor = document.getElementById('semesterEditDiv');
+                    editor.style = "display: block";
+                    semesterEditSemester = 'spring'
+                    semesterEditYear = item.year
+
+                    editor = document.getElementById("semesterEditSemesterTag")
+                    editor.innerHTML = "Semester: Spring"
+
+                    editor = document.getElementById("semesterEditYearTag")
+                    editor.innerHTML = "Year: " + semesterEditYear
+
+                    createSemesterView(item.spring)
+                }
+                spring.appendChild(changeViewSpringButton)
+
+
+
                 tr2.appendChild(spring)
 
                 const springClasses = document.createElement("ul");
@@ -639,8 +739,32 @@
                 //summer
                 const summer = document.createElement("td");
                 summer.id += item.year + "_Summer";
-                summer.innerHTML = "<button class='semesterButton btn btn-danger btn-block' onclick = ''>" + item.year + " Summer</button>";
                 summer.className += "semester";
+
+                const changeViewSummerButton = document.createElement("button")
+                changeViewSummerButton.className += "semesterButton btn btn-danger btn-block"
+                changeViewSummerButton.innerHTML = item.year + " Summer"
+
+                changeViewSummerButton.onclick = function() {
+                    let editor = document.getElementById('fourYearPlanDiv')
+                    editor.style = "display: none";
+                    editor = document.getElementById('semesterEditDiv');
+                    editor.style = "display: block";
+                    semesterEditSemester = 'summer'
+                    semesterEditYear = item.year
+
+                    editor = document.getElementById("semesterEditSemesterTag")
+                    editor.innerHTML = "Semester: Summer"
+
+                    editor = document.getElementById("semesterEditYearTag")
+                    editor.innerHTML = "Year: " + semesterEditYear
+
+                    createSemesterView(item.summer)
+                }
+                summer.appendChild(changeViewSummerButton)
+
+
+
                 tr2.appendChild(summer)
 
                 const summerClasses = document.createElement("ul");
@@ -855,7 +979,7 @@
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
                 auditMap.set(`AllFundamental`, true);
             }
-            if (auditMap.get("DSHU1") && auditMap.get("DSHU2") && auditMap.get("DSHS1") && auditMap.get("DSHS2") && auditMap.get("DSNL") && auditMap.get("DSNS") && 
+            if (auditMap.get("DSHU1") && auditMap.get("DSHU2") && auditMap.get("DSHS1") && auditMap.get("DSHS2") && auditMap.get("DSNL") && auditMap.get("DSNS") &&
                 auditMap.get("DSSP1") && auditMap.get("DSSP2")) {
                 let editor = document.getElementById(`degreeAuditAllDistributive`);
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
@@ -871,7 +995,7 @@
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
                 auditMap.set(`AllDiversity`, true);
             }
-            if (auditMap.get("AllLower") && auditMap.get("AllUpper") && auditMap.get("AllElective") && auditMap.get("AllUpperConcentration") && auditMap.get("AllFundamental") && 
+            if (auditMap.get("AllLower") && auditMap.get("AllUpper") && auditMap.get("AllElective") && auditMap.get("AllUpperConcentration") && auditMap.get("AllFundamental") &&
                 auditMap.get("AllDistributive") && auditMap.get("AllI") && auditMap.get("AllDiversity")) {
                 let editor = document.getElementById(`degreeAuditAllOverall`);
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
@@ -972,6 +1096,109 @@
             editor.className = "degreeAuditClassRecButton btn btn-danger"
             editor = document.getElementById(`classRecButton`);
             editor.className = "degreeAuditClassRecButton btn btn-warning"
+        }
+
+
+
+
+
+        function createSemesterView(arr) {
+            document.getElementById("semesterEditClassListDiv").innerHTML = ""
+
+
+            tempSemesterList = arr.map((x) => x)
+
+            const semesterClassList = document.createElement("ul");
+            semesterClassList.id = semesterEditYear + semesterEditSemester + "_classlist list-group list-group-flush"
+            semesterClassList.style = "padding:0px!important"
+            document.getElementById("semesterEditClassListDiv").appendChild(semesterClassList)
+
+            tempSemesterList.forEach((item) => {
+                let li = document.createElement("li")
+                li.innerText = item.classId
+                li.innerHTML += '<span class="credits badge badge-primary badge-pill">' + item.credits + ' Credits</span>'
+                li.className += "classItem list-group-item"
+                li.id = item.classId + "_ID"
+
+                const removeClassButton = document.createElement("button")
+                removeClassButton.className += "removeClassButton btn btn-danger"
+                removeClassButton.innerHTML = '-'
+
+                li.appendChild(removeClassButton)
+                removeClassButton.onclick = function(e) {
+
+                    let index = tempSemesterList.indexOf(item)
+                    tempSemesterList.splice(index, 1)
+
+                    createSemesterView(tempSemesterList)
+                    this.remove()
+                }
+
+                semesterClassList.appendChild(li)
+            })
+
+        }
+
+
+        function addClassToSemesterList() {
+            var inputVal = document.getElementById("semesterEditClassInput").value
+            const regex = /^[a-z]{4}[0-9]{3}[a-z]?$/i
+            if (regex.test(inputVal)) {
+                tempSemesterList.push({
+                    classId: (inputVal + "").toUpperCase(),
+                    credits: '3'
+                })
+
+                createSemesterView(tempSemesterList)
+            } else {
+                alert("class needs to consist of a four letter department code and 3-digit class number")
+            }
+
+            document.getElementById("semesterEditClassInput").value = ""
+
+        }
+
+        function addClassesToFourYearPlan() {
+
+            fourYearPlanData.forEach((item) => {
+                if (item.year == semesterEditYear) {
+                    switch (semesterEditSemester) {
+                        case 'fall':
+                            item.fall = tempSemesterList
+                            break;
+                        case 'winter':
+                            item.winter = tempSemesterList
+                            break;
+                        case 'spring':
+                            item.spring = tempSemesterList
+                            break;
+                        case 'summer':
+                            item.summer = tempSemesterList
+                            break;
+                    }
+                }
+            })
+
+            let editor = document.getElementById('semesterEditDiv')
+            editor.style = "display: none";
+            editor = document.getElementById('fourYearPlanDiv');
+            editor.style = "display: block";
+            semesterEditSemester = null
+            semesterEditYear = null
+            tempSemesterList = []
+
+            createFourYearPlan()
+
+        }
+
+        function switchToFourYearPlanView() {
+            let editor = document.getElementById('semesterEditDiv')
+            editor.style = "display: none";
+            editor = document.getElementById('fourYearPlanDiv');
+            editor.style = "display: block";
+            semesterEditSemester = null
+            semesterEditYear = null
+            tempSemesterList = []
         }
 
         function addClassToAudit(query) {
