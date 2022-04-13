@@ -434,7 +434,93 @@
         }
         
         
-
+        function createClassRec() {
+            document.getElementById("classRec").innerHTML = "";
+            const toAdd = document.getElementById("classRec");
+            
+            const tab = document.createElement("table");
+            tab.id += "OverallTable";
+            tab.className += "degreeAuditTable";
+                                         
+            const years = [];
+            fourYearPlanData.forEach((item) => {
+                years.push(item.year);
+            })
+                                         
+            const semesters = ["Fall", "Spring", "Winter", "Summer"];                             
+            
+            classRecData.forEach((item) => {
+                
+                //Row for each section
+                const indivRow = document.createElement("tr");
+                indivRow.id += item.type + "Tr";
+                indivRow.className += "degreeAuditRow";
+                
+                //Block within section
+                const indivData = document.createElement("td");
+                indivData.id += item.type + "indivData";
+                indivData.className += "degreeAuditData";
+                indivData.innerHTML = "<h4>" + item.type + "</h4>";
+                
+                //List of classes
+                const dataList = document.createElement("ul");
+                dataList.id = item.type + "dataList";
+                dataList.className += "degreeAuditDataList";
+                
+                //Each class element
+                item.classes.forEach((class) => {
+                    const classOutput = document.createElement("li");
+                    classOutput.innerText = class.classId;
+                    
+                    const semesters = document.createElement("select");
+                    semester.name = "Semester"
+                    semester.id = "Semester" + class;
+                    
+                    const yrs = document.createElement("select");
+                    yrs.name = "Year";
+                    yrs.id = "Year" + class;
+                    
+                    semesters.forEach((semester) => {
+                        const valu = document.createElement("option");
+                        valu.value += semester;
+                        valu.innerText = semester;
+                        
+                        semesters.appendChild(valu)
+                    })
+                    
+                    years.forEach((year) => {
+                        const valu = document.createElement("option");
+                        valu.value += year;
+                        valu.innerText = year;
+                        
+                        yrs.appendChild(valu)
+                    })
+                    
+                    classOutput.appendChild(semesters)
+                    classOutput.appendChild(yrs)
+                    
+                    const butt = document.createElement("button");
+                    butt.innerText = "Add";
+                    butt.id += "classRecButton" + class;
+                    butt.className += 'addClassRecButtons btn btn-danger';
+                    butt.onclick = "switchToClassRec()";
+                    
+                    classOutput.appendChild(butt)
+                    
+                    dataList.appendChild(classOutput)
+                })
+                
+                
+                
+                tab.appendChild(indivRow)
+                indivRow.appendChild(indivData)
+                indivData.appendChild(dataList)
+            })
+            
+            toAdd.appendChild(tab)
+            
+        }
+        
         function createFourYearPlan() {
 
             document.getElementById("fourYearPlan").innerHTML = "";
