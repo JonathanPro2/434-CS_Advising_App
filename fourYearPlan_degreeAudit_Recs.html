@@ -55,10 +55,10 @@
                 <table class="degreeAuditTable">
                     <tr class="degreeAuditRow">
                         <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllOverall" class="degreeAuditCheckmarksTitle"><img src="resources/x.png" alt="X" class="checkIconTitle"></h4>
+                            <h2 id="degreeAuditAllOverall" class="degreeAuditCheckmarksTitle"><img src="resources/x.png" alt="X" class="checkIconTitle"></h4>
                         </td>
                         <td class="degreeAuditData">
-                            <h4>Passing Degree Audit?</h4>
+                            <h2>Passing Degree Audit?</h4>
                         </td>
                     </tr>
                     <tr class="degreeAuditRow">
@@ -74,7 +74,7 @@
                                 <li id="degreeAuditMATH140"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                                 <li id="degreeAuditMATH141"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                                 <li id="degreeAuditSTAT400"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditMATH400"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
+                                <li id="degreeAuditMATHXXX"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                             </ul>
                         </td>
                         <td class="degreeAuditData">
@@ -89,7 +89,7 @@
                                 <li>MATH140</li>
                                 <li>MATH141</li>
                                 <li id="degreeAuditSTAT400ClassName">STAT4XX *must have MATH141 as a prerequisite</li>
-                                <li id="degreeAuditMATH400ClassName">MATHXXX *must have MATH141 as a prerequisite</li>
+                                <li id="degreeAuditMATHXXXClassName">MATHXXX *must have MATH141 as a prerequisite</li>
                             </ul>
                         </td>
                     </tr>
@@ -243,7 +243,8 @@
         let semesterEditYear
         let semesterEditSemester
 
-        var tempSemesterList = []
+        var tempSemesterList = [];
+        var removedCourses = [];
 
         let fourYearPlanData = [{
             year: 'Freshman',
@@ -392,7 +393,7 @@
         }];
 
         // List of all CMSC graduation requirements
-        let requirements = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATH400",
+        let requirements = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATHXXX",
             "Upper1", "Upper2", "Upper3", "Upper4", "Upper5", "Elective1", "Elective2", "UpperConcentration1", "UpperConcentration2",
             "UpperConcentration3", "UpperConcentration4", "FSAW", "FSPW", "FSOC", "FSMA", "FSAR", "DSHU1", "DSHU2", "DSHS1", "DSHS2",
             "DSNL", "DSNS", "DSSP1", "DSSP2", "I1", "I2", "DVUP", "DVCC"
@@ -400,10 +401,11 @@
         // Names of map key for each degree audit section
         let overallRequirements = ["AllOverall", "AllLower", "AllUpper", "AllElective", "AllUpperConcentration", "AllFundamental", "AllDistributive", "AllI", "AllDiversity"];
         // Array that stores all classes the student is currently registered for
-        let classesTaken = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATH400", "CMSC420", "CMSC424",
+        let classesTaken = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATH241", "CMSC420", "CMSC424",
             "CMSC434", "CMSC436", "CMSC451", "CMSC320", "CMSC389E", "ARMY401", "ARMY402", "ARMY403", "ARMY404", "ENGL101", "ENGL393", "COMM107", "CLAS170", "ASTR100",
             "GVPT170", "ENES140", "ENES210", "HISP200", "PHYS121", "PSYC100", "AMST101"
         ];
+        
         // Map that stores booleans for whether or not a requirement is currently fulfilled
         let auditMap = new Map();
 
@@ -852,8 +854,8 @@
                     editor = document.getElementById("semesterEditHead")
                     editor.innerHTML = semesterEditYear + " Winter Classes"
 
-                    editor = document.getElementById("semesterEditSemesterTag")
-                    editor.innerHTML = "Semester: Winter"
+                    //editor = document.getElementById("semesterEditSemesterTag")
+                    //editor.innerHTML = "Semester: Winter"
 
                     // editor = document.getElementById("semesterEditYearTag")
                     // editor.innerHTML = "Year: " + semesterEditYear
@@ -990,10 +992,17 @@
                 iSeries = [];
             classesTaken.forEach(ele => {
                 if (ele == "CMSC131" || ele == "CMSC132" || ele == "CMSC216" || ele == "CMSC250" || ele == "CMSC330" || ele == "CMSC351" ||
-                    ele == "MATH140" || ele == "MATH141" || ele == "STAT400" || ele == "MATH400") {
+                    ele == "MATH140" || ele == "MATH141" || ele == "STAT400") {
                     let editor = document.getElementById(`degreeAudit${ele}`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     auditMap.set(ele, true);
+                }
+                if (ele == "MATH241") {
+                    let editor = document.getElementById(`degreeAuditMATHXXX`);
+                    editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
+                    auditMap.set("MATHXXX", true);
+                    editor = document.getElementById(`degreeAuditMATHXXXClassName`);
+                    editor.innerText = ele + " (MATHXXX with MATH141 as a prerequisite)";
                 }
                 if (ele == "CMSC411" || ele == "CMSC412" || ele == "CMSC414" || ele == "CMSC416" || ele == "CMSC417" || ele == "CMSC420" ||
                     ele == "CMSC421" || ele == "CMSC422" || ele == "CMSC423" || ele == "CMSC424" || ele == "CMSC426" || ele == "CMSC427" ||
@@ -1148,7 +1157,7 @@
                 }
             });
             if (auditMap.get("CMSC131") && auditMap.get("CMSC132") && auditMap.get("CMSC216") && auditMap.get("CMSC250") && auditMap.get("CMSC330") &&
-                auditMap.get("CMSC351") && auditMap.get("MATH140") && auditMap.get("MATH141") && auditMap.get("STAT400") && auditMap.get("MATH400")) {
+                auditMap.get("CMSC351") && auditMap.get("MATH140") && auditMap.get("MATH141") && auditMap.get("STAT400") && auditMap.get("MATHXXX")) {
                 let editor = document.getElementById(`degreeAuditAllLower`);
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
                 auditMap.set(`AllLower`, true);
@@ -1236,7 +1245,7 @@
             }
             let editor = document.getElementById(`degreeAuditSTAT400ClassName`);
             editor.innerText = "STAT4XX *must have MATH141 as a prerequisite";
-            editor = document.getElementById(`degreeAuditMATH400ClassName`);
+            editor = document.getElementById(`degreeAuditMATHXXXClassName`);
             editor.innerText = "MATHXXX *must have MATH141 as a prerequisite";
             editor = document.getElementById(`degreeAuditFSAWClassName`);
             editor.innerText = "Academic Writing (FSAW)";
@@ -1292,13 +1301,8 @@
             editor.className = "degreeAuditClassRecButton btn btn-warning"
         }
 
-
-
-
-
         function createSemesterView(arr) {
             document.getElementById("semesterEditClassListDiv").innerHTML = ""
-
 
             tempSemesterList = arr.map((x) => x)
 
@@ -1323,11 +1327,11 @@
 
                     let index = tempSemesterList.indexOf(item)
                     tempSemesterList.splice(index, 1)
-
+                    removedCourses.push(item);
                     createSemesterView(tempSemesterList)
                     this.remove()
                 }
-
+                
                 semesterClassList.appendChild(li)
             })
 
@@ -1383,6 +1387,16 @@
                 }
             })
 
+            removedCourses.forEach(ele => {
+                let course = ele.classId;
+                removeClassFromAudit(course);
+            });
+            removedCourses = [];
+            tempSemesterList.forEach(ele => {
+                let course = ele.classId;
+                addClassToAudit(course);
+            });
+
             let editor = document.getElementById('semesterEditDiv')
             editor.style = "display: none";
             editor = document.getElementById('fourYearPlanDiv');
@@ -1407,8 +1421,11 @@
 
         function addClassToAudit(query) {
             if (query != null && query != "") {
-                if (classesTaken.findIndex(query) == -1) {
+                if (classesTaken.findIndex(ele => ele == query) == -1) {
                     classesTaken.push(query);
+                    initializeAuditMap();
+                    resetAuditDisplay();
+                    updateAudit();
                 }
             } else {
                 console.error("ERROR: no class inputted into addClassToAudit()");
