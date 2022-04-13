@@ -36,9 +36,11 @@
                     </div>
 
                     <input type="text" id="semesterEditClassInput" placeholder="CMSCXXX" onclick="displayKeyboard()">
-                    <p id="classEntryText">Enter a class id above</p>
-                    <!-- <p id="semesterEditSemesterTag">Semester: </p>
-                    <p id="semesterEditYearTag">Year: </p> -->
+                    <p id="classEntryText">Enter a course ID above</p>
+                    <p id="requestPermissionsTag">Click to send permissions request to advisor</p>
+                    <!-- <p id="semesterEditYearTag">Year: </p> -->
+
+                    <button onclick="requestPerms()" type="button" id="requestPermissionsButton" class="btn btn-danger">Request Permissions</button>
 
                     <button onclick="addClassToSemesterList()" type="button" id="addClassSemesterEdit" class="btn btn-danger">Add Class</button>
                     <button onclick="switchToFourYearPlanView()" type="button" id="cancelEditButton" class="btn btn-danger">Cancel Edits</button>
@@ -458,8 +460,7 @@
             }, {
                 classId: 'CMSC434',
                 credits: '3'
-            },
-                     {
+            }, {
                 classId: 'CMSC310',
                 credits: '3'
             }]
@@ -501,7 +502,7 @@
                 classId: 'CMSC436',
                 credits: '3'
             }]
-        },{
+        }, {
             type: 'Fundamental Studies',
             chosen: false,
             classes: [{
@@ -696,8 +697,8 @@
                         credits: clas.credits
                     };
                     if (document.getElementById("fourYearPlanDiv").style.display == "block") {
-                        
-                        if(!classesTaken.includes(d.classId)) { 
+
+                        if (!classesTaken.includes(d.classId)) {
                             if (sem == 'fall') {
                                 fourYearPlanData[cur_year].fall.push(d);
                             } else if (sem == 'spring') {
@@ -709,8 +710,7 @@
                             }
                             addClassToAudit(d.classId);
                             createFourYearPlan();
-                        }
-                        else {
+                        } else {
                             alert("You already have this class in your four year plan");
                         }
                     } else {
@@ -1400,13 +1400,13 @@
 
         function addClassToSemesterList() {
             var inputVal = document.getElementById("semesterEditClassInput").value
-            const regex = /^[a-z]{4}[0-9]{3}[a-z]?$/i
+            const regex = /^[a-z]{4}[0-9X]{3}[a-z]?$/i
             if (regex.test(inputVal)) {
 
                 let checkClassId = false
 
                 tempSemesterList.forEach((item) => {
-                    if (item.classId === (inputVal + "").toUpperCase()) {
+                    if (item.classId === (inputVal + "").toUpperCase() && ((inputVal + "").toUpperCase()).includes("X") != true) {
                         checkClassId = true
                     }
                 })
@@ -1423,7 +1423,7 @@
                 }
 
             } else {
-                alert("class needs to consist of a four letter department code and 3-digit class number")
+                alert("Class needs to consist of a four letter department code and 3-digit class number(or placeholder X) and an optional course number (letter) at the end. (acceptable examples: CMSC131, CMSC4XX, or CMSC388a")
             }
 
             document.getElementById("semesterEditClassInput").value = ""
@@ -1504,6 +1504,10 @@
             } else {
                 console.error("ERROR: no class inputted into addClassToAudit()");
             }
+        }
+
+        function requestPerms() {
+            alert("Permissions request sent to advisor for review.")
         }
 
         function removeClassFromAudit(query) {
