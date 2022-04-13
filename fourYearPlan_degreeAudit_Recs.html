@@ -1096,7 +1096,7 @@
                     editor.innerText = ele + " (FSPW)";
                     auditMap.set("FSPW", true);
                 }
-                if (ele == "COMM107") {
+                if (ele == "COMM107" || ele == "INAG110") {
                     let editor = document.getElementById(`degreeAuditFSOC`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     editor = document.getElementById(`degreeAuditFSOCClassName`);
@@ -1118,7 +1118,7 @@
                 if (ele == "CLAS170" || ele == "HISP200" || ele == "MUSC205" || ele == "ENGL321") {
                     dshus.push(ele);
                 }
-                if (ele == "ASTR100") {
+                if (ele == "ASTR100" || ele == "GEOG200") {
                     let editor = document.getElementById(`degreeAuditDSNS`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     editor = document.getElementById(`degreeAuditDSNSClassName`);
