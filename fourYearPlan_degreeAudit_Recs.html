@@ -1067,7 +1067,7 @@
                     ele == "CMSC421" || ele == "CMSC422" || ele == "CMSC423" || ele == "CMSC424" || ele == "CMSC426" || ele == "CMSC427" ||
                     ele == "CMSC430" || ele == "CMSC433" || ele == "CMSC434" || ele == "CMSC435" || ele == "CMSC436" || ele == "CMSC451" ||
                     ele == "CMSC452" || ele == "CMSC454" || ele == "CMSC456" || ele == "CMSC457" || ele == "CMSC474" || ele == "CMSC460" ||
-                    ele == "CMSC466" || ele == "CMSC470" || ele == "CMSC471") {
+                    ele == "CMSC466" || ele == "CMSC470" || ele == "CMSC471" || ele == "CMSC4XX") {
                     uppers.push(ele);
                 }
                 if (ele == "CMSC320" || ele == "CMSC335" || ele == "CMSC388" || ele == "CMSC389" || ele == "CMSC389N" || ele == "CMSC425" ||
@@ -1508,9 +1508,14 @@
 
         function removeClassFromAudit(query) {
             if (query != null && query != "") {
-                classesTaken = classesTaken.filter(ele => {
-                    return ele != query;
-                });
+                if (query == "CMSC4XX") {
+                   let index = classesTaken.findIndex(ele => ele == query);
+                   classesTaken.splice(index, 1); 
+                } else {
+                    classesTaken = classesTaken.filter(ele => {
+                        return ele != query;
+                    });
+                }
                 initializeAuditMap();
                 resetAuditDisplay();
                 updateAudit();
