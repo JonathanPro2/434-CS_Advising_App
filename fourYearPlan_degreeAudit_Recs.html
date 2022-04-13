@@ -1495,8 +1495,23 @@
 
         function addClassToAudit(query) {
             if (query != null && query != "") {
-                if (classesTaken.findIndex(ele => ele == query) == -1) {
-                    classesTaken.push(query);
+                if (classesTaken.findIndex(ele => ele == query) == -1 || query == "CMSC4XX") {
+                    //classesTaken.push(query);
+                    classesTaken = [];
+                    fourYearPlanData.forEach(year => {
+                        year.fall.forEach(ele => {
+                            classesTaken.push(ele.classId);
+                        });
+                        year.winter.forEach(ele => {
+                            classesTaken.push(ele.classId);
+                        });
+                        year.spring.forEach(ele => {
+                            classesTaken.push(ele.classId);
+                        });
+                        year.summer.forEach(ele => {
+                            classesTaken.push(ele.classId);
+                        });
+                    });
                     initializeAuditMap();
                     resetAuditDisplay();
                     updateAudit();
@@ -1520,6 +1535,7 @@
                         return ele != query;
                     });
                 }
+                console.log(classesTaken)
                 initializeAuditMap();
                 resetAuditDisplay();
                 updateAudit();
