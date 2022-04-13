@@ -883,7 +883,7 @@
                 classId: 'CMSC389E',
                 credits: '1'
             }, {
-                classId: 'amst101',
+                classId: 'AMST101',
                 credits: '3'
             }, {
                 classId: 'STAT430',
@@ -942,7 +942,7 @@
         // Array that stores all classes the student is currently registered for
         let classesTaken = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATH400", "CMSC420", "CMSC424",
             "CMSC434", "CMSC436", "CMSC451", "CMSC320", "CMSC389E", "ARMY401", "ARMY402", "ARMY403", "ARMY404", "ENGL101", "ENGL393", "COMM107", "CLAS170", "ASTR100",
-            "GVPT170", "ENES140", "ENES210", "HISP200", "PHYS121", "PSYC100"
+            "GVPT170", "ENES140", "ENES210", "HISP200", "PHYS121", "PSYC100", "AMST101"
         ];
         // Map that stores booleans for whether or not a requirement is currently fulfilled
         let auditMap = new Map();
@@ -1180,7 +1180,7 @@
                     editor.innerText = ele + " (DSNS)";
                     auditMap.set("DSNS", true);
                 }
-                if (ele = "PHYS121") {
+                if (ele == "PHYS121") {
                     let editor = document.getElementById(`degreeAuditDSNL`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     editor = document.getElementById(`degreeAuditDSNLClassName`);
@@ -1188,6 +1188,7 @@
                     auditMap.set("DSNL", true);
                 }
                 if (ele == "GVPT170" || ele == "PSYC100") {
+                    console.log(ele)
                     dshses.push(ele);
                 }
                 if (ele == "ENES140" || ele == "ENES210") {
@@ -1199,6 +1200,13 @@
                     editor = document.getElementById(`degreeAuditDVUPClassName`);
                     editor.innerText = ele + " (DVUP)";
                     auditMap.set("DVUP", true);
+                }
+                if (ele == "AMST101") {
+                    let editor = document.getElementById(`degreeAuditDVCC`);
+                    editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
+                    editor = document.getElementById(`degreeAuditDVCCClassName`);
+                    editor.innerText = ele + " (DVCC)";
+                    auditMap.set("DVCC", true);
                 }
             });
             uppers.forEach((ele, index) => {
@@ -1290,7 +1298,8 @@
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
                 auditMap.set(`AllFundamental`, true);
             }
-            if (auditMap.get("DSHS") && auditMap.get("DSNL") && auditMap.get("DSNS") && auditMap.get("DSSP")) {
+            if (auditMap.get("DSHU1") && auditMap.get("DSHU2") && auditMap.get("DSHS1") && auditMap.get("DSHS2") && auditMap.get("DSNL") && auditMap.get("DSNS") && 
+                auditMap.get("DSSP1") && auditMap.get("DSSP2")) {
                 let editor = document.getElementById(`degreeAuditAllDistributive`);
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
                 auditMap.set(`AllDistributive`, true);
