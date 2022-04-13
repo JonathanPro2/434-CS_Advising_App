@@ -69,13 +69,14 @@ body {
 }
 
 #startAppButton {
+    display: flex;
     grid-column-start: 7;
     grid-column-end: 10;
     grid-row-start: 7;
     grid-row-end: 8;
-    text-align: center;
     font-size: xx-large;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -351,7 +352,7 @@ body {
 .keyboardImage {
     display: none;
     position: fixed;
-    bottom:0;
-    height:40%;
-    width:100%;
+    bottom: 0;
+    height: 40%;
+    width: 100%;
 }
