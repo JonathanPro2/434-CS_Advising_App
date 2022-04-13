@@ -685,6 +685,7 @@
                 classOutput.appendChild(semesters)
                 classOutput.appendChild(yrs)
 
+
                 const butt = document.createElement("button");
                 butt.innerText = "Add";
                 butt.id += "classRecButton" + clas;
@@ -738,6 +739,16 @@
                 };
 
                 classOutput.appendChild(butt)
+
+                const lineBr = document.createElement("br")
+                classOutput.appendChild(lineBr)
+
+                const descr = document.createElement("span");
+                descr.innerHTML = '&#9432;'
+                descr.onclick = function() {
+                    alert(clas.classId + ": This course revolves around a topic that has to do with the course. Credits: 3 Grading Method: Regular")
+                }
+                classOutput.appendChild(descr)
 
                 dataList.appendChild(classOutput)
             })
@@ -1528,8 +1539,8 @@
         function removeClassFromAudit(query) {
             if (query != null && query != "") {
                 if (query == "CMSC4XX") {
-                   let index = classesTaken.findIndex(ele => ele == query);
-                   classesTaken.splice(index, 1); 
+                    let index = classesTaken.findIndex(ele => ele == query);
+                    classesTaken.splice(index, 1);
                 } else {
                     classesTaken = classesTaken.filter(ele => {
                         return ele != query;
