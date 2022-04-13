@@ -408,8 +408,146 @@
         // Map that stores booleans for whether or not a requirement is currently fulfilled
         let auditMap = new Map();
 
+        let Cat = "Lower Level";
+        let CurrentSemester = "Fall";
+        let CurrentYear = "Freshman";
+
         let classRecData = [{
-            type: 'Lower Level Electives',
+            type: 'Lower Level',
+            chosen: true,
+            classes: [{
+                classId: 'CMSC131',
+                credits: '4'
+            }, {
+                classId: 'MATH140',
+                credits: '4'
+            }, {
+                classId: 'ENGL101',
+                credits: '3'
+            }, {
+                classId: 'CLAS170',
+                credits: '3'
+            }, {
+                classId: 'UNIV100',
+                credits: '1'
+            }]
+        }, {
+            type: 'Upper Level',
+            chosen: false,
+            classes: [{
+                classId: 'CMSC131',
+                credits: '4'
+            }, {
+                classId: 'MATH140',
+                credits: '4'
+            }, {
+                classId: 'ENGL101',
+                credits: '3'
+            }, {
+                classId: 'CLAS170',
+                credits: '3'
+            }, {
+                classId: 'UNIV100',
+                credits: '1'
+            }]
+        }, {
+            type: 'Elective',
+            chosen: false,
+            classes: [{
+                classId: 'AREC131',
+                credits: '4'
+            }, {
+                classId: 'AREC140',
+                credits: '4'
+            }, {
+                classId: 'AREC101',
+                credits: '3'
+            }, {
+                classId: 'AREC170',
+                credits: '3'
+            }, {
+                classId: 'AREC100',
+                credits: '1'
+            }]
+        }, {
+            type: 'Upper Concentration',
+            chosen: false,
+            classes: [{
+                classId: 'CMSC450',
+                credits: '4'
+            }, {
+                classId: 'CMSC434',
+                credits: '4'
+            }, {
+                classId: 'CMSC435',
+                credits: '3'
+            }, {
+                classId: 'CLAS170',
+                credits: '3'
+            }, {
+                classId: 'UNIV100',
+                credits: '1'
+            }]
+        }, {
+            type: 'Fundamental Studies',
+            chosen: false,
+            classes: [{
+                classId: 'CMSC131',
+                credits: '4'
+            }, {
+                classId: 'MATH140',
+                credits: '4'
+            }, {
+                classId: 'ENGL101',
+                credits: '3'
+            }, {
+                classId: 'CLAS170',
+                credits: '3'
+            }, {
+                classId: 'UNIV100',
+                credits: '1'
+            }]
+        }, {
+            type: 'Distributive Studies',
+            chosen: true,
+            classes: [{
+                classId: 'CMSC131',
+                credits: '4'
+            }, {
+                classId: 'MATH140',
+                credits: '4'
+            }, {
+                classId: 'ENGL101',
+                credits: '3'
+            }, {
+                classId: 'CLAS170',
+                credits: '3'
+            }, {
+                classId: 'UNIV100',
+                credits: '1'
+            }]
+        }, {
+            type: 'I-Series',
+            chosen: true,
+            classes: [{
+                classId: 'CMSC131',
+                credits: '4'
+            }, {
+                classId: 'MATH140',
+                credits: '4'
+            }, {
+                classId: 'ENGL101',
+                credits: '3'
+            }, {
+                classId: 'CLAS170',
+                credits: '3'
+            }, {
+                classId: 'UNIV100',
+                credits: '1'
+            }]
+        }, {
+            type: 'Diversity',
+            chosen: false,
             classes: [{
                 classId: 'CMSC131',
                 credits: '4'
@@ -463,6 +601,16 @@
             createFourYearPlan()
         }
 
+        function addToFourYear(classI, credit, semester, year) {
+            let d = {
+                classId: classI,
+                credits: credit
+            };
+            let result = semester.toLowerCase();
+            fourYearPlanData[year][result].push(d);
+            createFourYearPlan();
+        }
+
 
         function createClassRec() {
             document.getElementById("classRec").innerHTML = "";
@@ -478,95 +626,130 @@
                 years.push(item.year);
             })
 
+            let classe = null;
+            classRecData.forEach((item) => {
+                if (item.type == Cat) {
+                    classe = item.classes;
+                }
+            })
             const sems = ["Fall", "Spring", "Winter", "Summer"];
             const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
 
-            classRecData.forEach((item) => {
 
-                //Row for each section
-                const indivRow = document.createElement("tr");
-                indivRow.id += item.type + "Tr";
-                indivRow.className += "degreeAuditRow";
+            //Row for each section
+            const indivRow = document.createElement("tr");
+            indivRow.id += "Tr";
+            indivRow.className += "degreeAuditRow";
+            const drop = document.createElement("select");
+            drop.name = "Category";
+            drop.id = "Category2";
+            drop.className += 'classRecDropdown';
+            drop.onchange =
+                function() {
+                    Cat = this.value;
+                    createClassRec();
+                };
 
-                const drop = document.createElement("select");
-                drop.name = "Category";
-                drop.id = "Category" + item;
-                drop.className += 'classRecDropdown';
+            categories.forEach((category) => {
+                const valu = document.createElement("option");
+                valu.value += category;
+                valu.innerText = category;
 
-                categories.forEach((category) => {
-                    const valu = document.createElement("option");
-                    valu.value += category;
-                    valu.innerText = category;
-
-                    drop.appendChild(valu)
-                })
-
-
-                //Block within section
-                const indivData = document.createElement("td");
-                indivData.id += item.type + "indivData";
-                indivData.className += "degreeAuditData";
-                indivData.innerHTML = "<h4 class = 'classRecTitle'>" + item.type + "</h4>";
-
-                //List of classes
-                const dataList = document.createElement("ul");
-                dataList.id = item.type + "dataList";
-                dataList.className += "degreeAuditDataList list-group list-group-flush";
-
-                //Each class element
-                item.classes.forEach((clas) => {
-
-                    const classOutput = document.createElement("li");
-                    classOutput.className += "classRecLI list-group-item";
-                    classOutput.innerText = clas.classId;
-
-
-                    const semesters = document.createElement("select");
-                    semesters.name = "Semester";
-                    semesters.id = "Semester" + clas;
-
-                    const yrs = document.createElement("select");
-                    yrs.name = "Year";
-                    yrs.id = "Year" + clas;
-
-                    sems.forEach((semester) => {
-                        const valu = document.createElement("option");
-                        valu.value += semester;
-                        valu.innerText = semester;
-
-                        semesters.appendChild(valu)
-                    })
-
-                    years.forEach((year) => {
-                        const valu = document.createElement("option");
-                        valu.value += year;
-                        valu.innerText = year;
-
-                        yrs.appendChild(valu)
-                    })
-
-                    classOutput.appendChild(semesters)
-                    classOutput.appendChild(yrs)
-
-                    const butt = document.createElement("button");
-                    butt.innerText = "Add";
-                    butt.id += "classRecButton" + clas;
-                    butt.className += 'addClassRecButtons btn btn-danger';
-                    butt.onclick = "switchToClassRec()";
-
-                    classOutput.appendChild(butt)
-
-                    dataList.appendChild(classOutput)
-                })
-
-
-
-                tab.appendChild(indivRow)
-                indivRow.appendChild(indivData)
-
-                indivData.appendChild(dataList)
-                toAdd.appendChild(drop)
+                drop.appendChild(valu)
             })
+
+
+            //Block within section
+            const indivData = document.createElement("td");
+            indivData.id += "indivData";
+            indivData.className += "degreeAuditData";
+            indivData.innerHTML = "<h4 class = 'classRecTitle'>" + Cat + "</h4>";
+
+            //List of classes
+            const dataList = document.createElement("ul");
+            dataList.id = "dataList";
+            dataList.className += "degreeAuditDataList list-group list-group-flush";
+
+            //Each class element
+            classe.forEach((clas) => {
+                const classOutput = document.createElement("li");
+                classOutput.className += "classRecLI list-group-item";
+                classOutput.innerText = clas.classId;
+
+
+                const semesters = document.createElement("select");
+                semesters.name = "Semester";
+                semesters.id = "Semester" + clas;
+                semesters.onchange =
+                    function() {
+                        CurrentSemester = this.value;
+                    };
+
+                const yrs = document.createElement("select");
+                yrs.name = "Year";
+                yrs.id = "Year" + clas;
+                yrs.onchange =
+                    function() {
+                        CurrentYear = this.value;
+                    };
+
+                sems.forEach((semester) => {
+                    const valu = document.createElement("option");
+                    valu.value += semester;
+                    valu.innerText = semester;
+
+                    semesters.appendChild(valu)
+                })
+
+                years.forEach((year) => {
+                    const valu = document.createElement("option");
+                    valu.value += year;
+                    valu.innerText = year;
+
+                    yrs.appendChild(valu)
+                })
+
+                classOutput.appendChild(semesters)
+                classOutput.appendChild(yrs)
+
+                const butt = document.createElement("button");
+                butt.innerText = "Add";
+                butt.id += "classRecButton" + clas;
+                butt.className += 'addClassRecButtons btn btn-danger';
+                butt.onclick = function() {
+                    let sem = CurrentSemester.toLowerCase();
+                    let cur_year = years.indexOf(CurrentYear);
+                    let d = {
+                        classId: clas.classId,
+                        credits: clas.credits
+                    };
+                    if (sem == 'fall') {
+                        fourYearPlanData[cur_year].fall.push(d);
+                    } else if (sem == 'spring') {
+                        fourYearPlanData[cur_year].spring.push(d);
+                    } else if (sem == 'winter') {
+                        fourYearPlanData[cur_year].winter.push(d);
+                    } else {
+                        fourYearPlanData[cur_year].summer.push(d);
+                    }
+
+                    CurrentSemester = 'Fall';
+                    createFourYearPlan();
+
+                };
+
+                classOutput.appendChild(butt)
+
+                dataList.appendChild(classOutput)
+            })
+
+
+
+            tab.appendChild(indivRow)
+            indivRow.appendChild(indivData)
+
+            indivData.appendChild(dataList)
+            toAdd.appendChild(drop)
 
             toAdd.appendChild(tab)
 
