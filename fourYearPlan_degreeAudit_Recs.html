@@ -12,7 +12,8 @@
 
 <body onload="doOnLoad()">
 
-    <div id="main">
+    <img id="keyboardImage" src="resources/keyboard.png" class="keyboardImage" alt="keyboard">
+    <div id="main" onclick="hideKeyboard()">
         <div id="phase11" class="left">
 
             <!-- 4 year plan -->
@@ -34,14 +35,12 @@
 
                     </div>
 
-                    <input type="text" id="semesterEditClassInput" placeholder="CMSCXXX">
+                    <input type="text" id="semesterEditClassInput" placeholder="CMSCXXX" onclick="displayKeyboard()">
                     <p id="classEntryText">Enter a class id above</p>
                     <!-- <p id="semesterEditSemesterTag">Semester: </p>
                     <p id="semesterEditYearTag">Year: </p> -->
 
                     <button onclick="addClassToSemesterList()" type="button" id="addClassSemesterEdit" class="btn btn-danger">Add Class</button>
-
-
                     <button onclick="switchToFourYearPlanView()" type="button" id="cancelEditButton" class="btn btn-danger">Cancel Edits</button>
                     <button onclick="addClassesToFourYearPlan()" type="button" id="saveEditButton" class="btn btn-danger">Save Edits</button>
                 </div>
@@ -1350,6 +1349,23 @@
             }
 
             document.getElementById("semesterEditClassInput").value = ""
+        }
+
+        function displayKeyboard() {
+            document.getElementById("keyboardImage").style = "display: block";
+        }
+
+        function hideKeyboard() {
+            let temp = document.getElementById("keyboardImage").style;
+            console.log(temp.display);
+            // if (document.getElementById("keyboardImage").style.display == "block") {
+            //     document.getElementById("keyboardImage").style = "display: none";
+            // }
+            var myElement = document.getElementById('keyboardImage');
+            if(myElement == document.activeElement){
+                //myElement Has Focus
+                document.getElementById("keyboardImage").style = "display: none";
+            }
 
         }
 
