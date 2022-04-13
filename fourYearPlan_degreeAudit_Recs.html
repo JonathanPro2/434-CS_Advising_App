@@ -610,64 +610,24 @@
             createFourYearPlan();
         }
 
-
-        function createClassRec() {
-            document.getElementById("classRec").innerHTML = "";
-            const toAdd = document.getElementById("classRec");
-            //toAdd.innerHTML = "Choose your needed category:"
-
-            const tab = document.createElement("table");
-            tab.id += "OverallTable";
-            tab.className += "degreeAuditTable";
+        function reloadClassRec() {
+            const sems = ["Fall", "Spring", "Winter", "Summer"];
+            const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
 
             const years = [];
             fourYearPlanData.forEach((item) => {
                 years.push(item.year);
             })
-
+            
             let classe = null;
             classRecData.forEach((item) => {
                 if (item.type == Cat) {
                     classe = item.classes;
                 }
             })
-            const sems = ["Fall", "Spring", "Winter", "Summer"];
-            const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
-
-
-            //Row for each section
-            const indivRow = document.createElement("tr");
-            indivRow.id += "Tr";
-            indivRow.className += "degreeAuditRow";
-            const drop = document.createElement("select");
-            drop.name = "Category";
-            drop.id = "Category2";
-            drop.className += 'classRecDropdown';
-            drop.onchange =
-                function() {
-                    Cat = this.value;
-                    createClassRec();
-                };
-
-            categories.forEach((category) => {
-                const valu = document.createElement("option");
-                valu.value += category;
-                valu.innerText = category;
-
-                drop.appendChild(valu)
-            })
-
-
-            //Block within section
-            const indivData = document.createElement("td");
-            indivData.id += "indivData";
-            indivData.className += "degreeAuditData";
-            indivData.innerHTML = "<h4 class = 'classRecTitle'>" + Cat + "</h4>";
-
-            //List of classes
-            const dataList = document.createElement("ul");
-            dataList.id = "dataList";
-            dataList.className += "degreeAuditDataList list-group list-group-flush";
+            
+            document.getElementById('categoryTitle').innerText = Cat;
+            document.getElementById('dataList').innerHTML = "";
 
             //Each class element
             classe.forEach((clas) => {
@@ -731,8 +691,7 @@
                     } else {
                         fourYearPlanData[cur_year].summer.push(d);
                     }
-
-                    CurrentSemester = 'Fall';
+                    
                     createFourYearPlan();
 
                 };
@@ -741,17 +700,71 @@
 
                 dataList.appendChild(classOutput)
             })
+        }
+
+        function createClassRec() {
+            document.getElementById("classRec").innerHTML = "";
+            const toAdd = document.getElementById("classRec");
+            //toAdd.innerHTML = "Choose your needed category:"
+            
+            const sems = ["Fall", "Spring", "Winter", "Summer"];
+            const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
+
+            const years = [];
+            fourYearPlanData.forEach((item) => {
+                years.push(item.year);
+            })
+            
+            const tab = document.createElement("table");
+            tab.id += "OverallTable";
+            tab.className += "degreeAuditTable";
+            
+            //Row for each section
+            const indivRow = document.createElement("tr");
+            indivRow.id += "Tr";
+            indivRow.className += "degreeAuditRow";
 
 
+            //Block within section
+            const indivData = document.createElement("td");
+            indivData.id += "indivData";
+            indivData.className += "degreeAuditData";
+            indivData.innerHTML = "<h4 id = 'categoryTitle' class = 'classRecTitle'>" + Cat + "</h4>";
+            
+            //const indivData = document.getElementById("indivData");
+            //document.getElementById("dataList") = "";
+            //List of classes
+            const dataList = document.createElement("ul");
+            dataList.id = "dataList";
+            dataList.className += "degreeAuditDataList list-group list-group-flush";
 
+            const drop = document.createElement("select");
+            drop.name = "Category";
+            drop.id = "Category2";
+            drop.className += 'classRecDropdown';
+            drop.onchange =
+                function() {
+                    Cat = this.value;
+                    reloadClassRec();
+                };
+
+            categories.forEach((category) => {
+                const valu = document.createElement("option");
+                valu.value += category;
+                valu.innerText = category;
+
+                drop.appendChild(valu)
+            })
+            
             tab.appendChild(indivRow)
             indivRow.appendChild(indivData)
-
             indivData.appendChild(dataList)
             toAdd.appendChild(drop)
-
             toAdd.appendChild(tab)
-
+            
+            
+            reloadClassRec();
+            
         }
 
         function createFourYearPlan() {
