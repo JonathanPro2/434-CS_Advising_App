@@ -17,7 +17,7 @@
         <div id="phase11" class="left">
 
             <!-- 4 year plan -->
-            <div id="fourYearPlanDiv">
+            <div id="fourYearPlanDiv" style = 'display: block'>
                 <div id="fourYearPlan"></div>
                 <div id="fypAddEdit">
                     <button onclick="addNewYear()" type="button" id="addYearButton" class="btn btn-danger">Add New Year</button>
@@ -667,6 +667,7 @@
 
                 sems.forEach((semester) => {
                     const valu = document.createElement("option");
+                    //valu.id = "semval" + clas;
                     valu.value += semester;
                     valu.innerText = semester;
 
@@ -675,6 +676,7 @@
 
                 years.forEach((year) => {
                     const valu = document.createElement("option");
+                    //valu.id = "yearval" + year;
                     valu.value += year;
                     valu.innerText = year;
 
@@ -695,18 +697,40 @@
                         classId: clas.classId,
                         credits: clas.credits
                     };
-                    if (sem == 'fall') {
-                        fourYearPlanData[cur_year].fall.push(d);
-                    } else if (sem == 'spring') {
-                        fourYearPlanData[cur_year].spring.push(d);
-                    } else if (sem == 'winter') {
-                        fourYearPlanData[cur_year].winter.push(d);
-                    } else {
-                        fourYearPlanData[cur_year].summer.push(d);
+                    if (document.getElementById("fourYearPlanDiv").style.display == "block") {
+                        if (sem == 'fall') {
+                            fourYearPlanData[cur_year].fall.push(d);
+                        } else if (sem == 'spring') {
+                            fourYearPlanData[cur_year].spring.push(d);
+                        } else if (sem == 'winter') {
+                            fourYearPlanData[cur_year].winter.push(d);
+                        } else {
+                            fourYearPlanData[cur_year].summer.push(d);
+                        }
+                        createFourYearPlan();
+                    } 
+                    else {
+                        if (semesterEditSemester == sem && semesterEditYear == CurrentYear) {
+                            if (sem == 'fall') {
+                                tempSemesterList.push(d);
+                            } else if (sem == 'spring') {
+                                tempSemesterList.push(d);
+                            } else if (sem == 'winter') {
+                                tempSemesterList.push(d);
+                            } else {
+                                tempSemesterList.push(d);
+                            }
+                            createSemesterView(tempSemesterList);
+                        }
+                        else {
+                            //ERROR
+                            alert("To add to a different semester, cancel or save your current semester changes and try again");
+                        }
+                        
                     }
-                    
-                    createFourYearPlan();
-
+                    CurrentSemester = "fall";
+                    CurrentYear = "Freshman"
+                    reloadClassRec();
                 };
 
                 classOutput.appendChild(butt)
