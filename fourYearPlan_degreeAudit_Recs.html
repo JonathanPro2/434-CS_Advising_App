@@ -1364,22 +1364,15 @@
             document.getElementById("semesterEditClassInput").value = ""
         }
 
-        function displayKeyboard() {
+        async function displayKeyboard() {
+            await new Promise(resolve => setTimeout(resolve, 100));
             document.getElementById("keyboardImage").style = "display: block";
         }
 
         function hideKeyboard() {
-            let temp = document.getElementById("keyboardImage").style;
-            console.log(temp.display);
-            // if (document.getElementById("keyboardImage").style.display == "block") {
-            //     document.getElementById("keyboardImage").style = "display: none";
-            // }
-            var myElement = document.getElementById('keyboardImage');
-            if(myElement == document.activeElement){
-                //myElement Has Focus
+            if (document.getElementById("keyboardImage").style.display == "block") {
                 document.getElementById("keyboardImage").style = "display: none";
             }
-
         }
 
         function addClassesToFourYearPlan() {
