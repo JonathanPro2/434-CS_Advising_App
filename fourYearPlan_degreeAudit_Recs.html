@@ -464,7 +464,7 @@
                 credits: '3'
             }]
         }, {
-            type: 'Elective',
+            type: 'CMSC Electives',
             chosen: false,
             classes: [{
                 classId: 'CMSC415',
@@ -623,7 +623,7 @@
 
         function reloadClassRec() {
             const sems = ["Fall", "Spring", "Winter", "Summer"];
-            const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
+            const categories = ["Lower Level", "Upper Level", "CMSC Electives", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
 
             const years = [];
             fourYearPlanData.forEach((item) => {
@@ -696,17 +696,23 @@
                         credits: clas.credits
                     };
                     if (document.getElementById("fourYearPlanDiv").style.display == "block") {
-                        if (sem == 'fall') {
-                            fourYearPlanData[cur_year].fall.push(d);
-                        } else if (sem == 'spring') {
-                            fourYearPlanData[cur_year].spring.push(d);
-                        } else if (sem == 'winter') {
-                            fourYearPlanData[cur_year].winter.push(d);
-                        } else {
-                            fourYearPlanData[cur_year].summer.push(d);
+                        
+                        if(!classesTaken.includes(d.classId)) { 
+                            if (sem == 'fall') {
+                                fourYearPlanData[cur_year].fall.push(d);
+                            } else if (sem == 'spring') {
+                                fourYearPlanData[cur_year].spring.push(d);
+                            } else if (sem == 'winter') {
+                                fourYearPlanData[cur_year].winter.push(d);
+                            } else {
+                                fourYearPlanData[cur_year].summer.push(d);
+                            }
+                            addClassToAudit(d.classId);
+                            createFourYearPlan();
                         }
-                        addClassToAudit(d.classId);
-                        createFourYearPlan();
+                        else {
+                            alert("You already have this class in your four year plan");
+                        }
                     } else {
                         if (semesterEditSemester == sem && semesterEditYear == CurrentYear) {
                             if (sem == 'fall') {
@@ -743,7 +749,7 @@
             //toAdd.innerHTML = "Choose your needed category:"
 
             const sems = ["Fall", "Spring", "Winter", "Summer"];
-            const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
+            const categories = ["Lower Level", "Upper Level", "CMSC Electives", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
 
             const years = [];
             fourYearPlanData.forEach((item) => {
