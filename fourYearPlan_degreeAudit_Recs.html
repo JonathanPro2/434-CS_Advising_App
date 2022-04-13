@@ -17,7 +17,7 @@
         <div id="phase11" class="left">
 
             <!-- 4 year plan -->
-            <div id="fourYearPlanDiv" style = 'display: block'>
+            <div id="fourYearPlanDiv" style='display: block'>
                 <div id="fourYearPlan"></div>
                 <div id="fypAddEdit">
                     <button onclick="addNewYear()" type="button" id="addYearButton" class="btn btn-danger">Add New Year</button>
@@ -416,7 +416,7 @@
                 classesTaken.push(ele.classId);
             });
         });
-        
+
         // Map that stores booleans for whether or not a requirement is currently fulfilled
         let auditMap = new Map();
 
@@ -629,14 +629,14 @@
             fourYearPlanData.forEach((item) => {
                 years.push(item.year);
             })
-            
+
             let classe = null;
             classRecData.forEach((item) => {
                 if (item.type == Cat) {
                     classe = item.classes;
                 }
             })
-            
+
             document.getElementById('categoryTitle').innerText = Cat;
             document.getElementById('dataList').innerHTML = "";
 
@@ -696,26 +696,18 @@
                         credits: clas.credits
                     };
                     if (document.getElementById("fourYearPlanDiv").style.display == "block") {
-                        
-                        if(!classesTaken.includes(d.classId)) {
-                            if (sem == 'fall') {
-                                fourYearPlanData[cur_year].fall.push(d);
-                            } else if (sem == 'spring') {
-                                fourYearPlanData[cur_year].spring.push(d);
-                            } else if (sem == 'winter') {
-                                fourYearPlanData[cur_year].winter.push(d);
-                            } else {
-                                fourYearPlanData[cur_year].summer.push(d);
-                            }
-                        
-                            addClassToAudit(d.classId);
-                            createFourYearPlan();
+                        if (sem == 'fall') {
+                            fourYearPlanData[cur_year].fall.push(d);
+                        } else if (sem == 'spring') {
+                            fourYearPlanData[cur_year].spring.push(d);
+                        } else if (sem == 'winter') {
+                            fourYearPlanData[cur_year].winter.push(d);
                         } else {
-                            alert("This class is already in your four year plan");
+                            fourYearPlanData[cur_year].summer.push(d);
                         }
-                        
-                    } 
-                    else {
+                        addClassToAudit(d.classId);
+                        createFourYearPlan();
+                    } else {
                         if (semesterEditSemester == sem && semesterEditYear == CurrentYear) {
                             if (sem == 'fall') {
                                 tempSemesterList.push(d);
@@ -728,12 +720,11 @@
                             }
                             addClassToAudit(d.classId);
                             createSemesterView(tempSemesterList);
-                        }
-                        else {
+                        } else {
                             //ERROR
                             alert("To add to a different semester, cancel or save your current semester changes and try again");
                         }
-                        
+
                     }
                     CurrentSemester = "fall";
                     CurrentYear = "Freshman"
@@ -750,7 +741,7 @@
             document.getElementById("classRec").innerHTML = "";
             const toAdd = document.getElementById("classRec");
             //toAdd.innerHTML = "Choose your needed category:"
-            
+
             const sems = ["Fall", "Spring", "Winter", "Summer"];
             const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
 
@@ -758,11 +749,11 @@
             fourYearPlanData.forEach((item) => {
                 years.push(item.year);
             })
-            
+
             const tab = document.createElement("table");
             tab.id += "OverallTable";
             tab.className += "degreeAuditTable";
-            
+
             //Row for each section
             const indivRow = document.createElement("tr");
             indivRow.id += "Tr";
@@ -774,7 +765,7 @@
             indivData.id += "indivData";
             indivData.className += "degreeAuditData";
             indivData.innerHTML = "<h4 id = 'categoryTitle' class = 'classRecTitle'>" + Cat + "</h4>";
-            
+
             //const indivData = document.getElementById("indivData");
             //document.getElementById("dataList") = "";
             //List of classes
@@ -799,16 +790,16 @@
 
                 drop.appendChild(valu)
             })
-            
+
             tab.appendChild(indivRow)
             indivRow.appendChild(indivData)
             indivData.appendChild(dataList)
             toAdd.appendChild(drop)
             toAdd.appendChild(tab)
-            
-            
+
+
             reloadClassRec();
-            
+
         }
 
         function createFourYearPlan() {
@@ -1394,7 +1385,7 @@
                     createSemesterView(tempSemesterList)
                     this.remove()
                 }
-                
+
                 semesterClassList.appendChild(li)
             })
 
@@ -1405,12 +1396,26 @@
             var inputVal = document.getElementById("semesterEditClassInput").value
             const regex = /^[a-z]{4}[0-9]{3}[a-z]?$/i
             if (regex.test(inputVal)) {
-                tempSemesterList.push({
-                    classId: (inputVal + "").toUpperCase(),
-                    credits: '3'
+
+                let checkClassId = false
+
+                tempSemesterList.forEach((item) => {
+                    if (item.classId === (inputVal + "").toUpperCase()) {
+                        checkClassId = true
+                    }
                 })
 
-                createSemesterView(tempSemesterList)
+                if (checkClassId) {
+                    alert("You already have this course in your semester classes!!")
+                } else {
+                    tempSemesterList.push({
+                        classId: (inputVal + "").toUpperCase(),
+                        credits: '3'
+                    })
+
+                    createSemesterView(tempSemesterList)
+                }
+
             } else {
                 alert("class needs to consist of a four letter department code and 3-digit class number")
             }
