@@ -203,579 +203,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="classRec" style="display: none">
-                <table class="degreeAuditTable">
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllOverall" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>Recommendations</h4>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllLower" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditCMSC131"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                <li id="degreeAuditCMSC132"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                <li id="degreeAuditCMSC216"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                <li id="degreeAuditCMSC250"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                <li id="degreeAuditCMSC330"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                <li id="degreeAuditCMSC351"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                <li id="degreeAuditMATH140"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                <li id="degreeAuditMATH141"><img src="resources/dash.png" alt="X" class="dashIconBody"></li>
-                                
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>Lower Level Requirements</h4>
-                            <ul class = "degreeAuditDataList">
-							     <li>CMSC131 
-                                     <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li>CMSC132 <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                    <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li>CMSC216 <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                    <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li>CMSC250 <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                    <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li>CMSC330 <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                    <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li>CMSC351 <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                    <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li>MATH140 <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                    <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li>MATH141 <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                    <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-						
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllUpper" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditUpper1"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditUpper2"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditUpper3"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditUpper4"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditUpper5"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>Upper Level Requirements</h4>
-                            <ul class="degreeAuditDataList">
-                                <li id="degreeAuditUpper1ClassName">CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditUpper2ClassName">CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditUpper3ClassName">CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditUpper4ClassName">CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditUpper5ClassName">CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllElective" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditElective1"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditElective2"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>CMSC Electives</h4>
-                            <ul class="degreeAuditDataList">
-                                <li id="degreeAuditElective1ClassName"> CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditElective2ClassName"> CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllUpperConcentration" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditUpperConcentration1"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditUpperConcentration2"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditUpperConcentration3"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditUpperConcentration4"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>Upper Level Concentration</h4>
-                            <ul class="degreeAuditDataList">
-                                <li id="degreeAuditUpperConcentration1ClassName"> CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditUpperConcentration1ClassName"> CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditUpperConcentration1ClassName"> CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditUpperConcentration1ClassName"> CMSC4XX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllFundamental" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditFSAW"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditFSPW"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditFSOC"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditFSMA"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditFSAR"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>Fundamental Studies</h4>
-                            <ul class="degreeAuditDataList">
-                                <li id="degreeAuditFSAWClassName">FSAWXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditFSPWClassName">FSPWXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditFSOCClassName">FSTWXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditFSMAClassName">FSMAXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditFSARClassName">FSARXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllDistributive" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditDSHU"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditDSHS"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditDSNL"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditDSNS"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditDSSP"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>Distributive Studies</h4>
-                            <ul class="degreeAuditDataList">
-                                <li id="degreeAuditDSHUClassName">DSHUXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditDSHSClassName">DSHSXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditDSNLClassName">DSNLXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditDSNSClassName">DSNSXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditDSSPClassName">DSSPXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllI" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditI1"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditI2"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>I Series</h4>
-                            <ul class="degreeAuditDataList">
-                                <li id="degreeAuditI1ClassName">ISISXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditI2ClassName">ISISXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr class="degreeAuditRow">
-                        <td class="degreeAuditCheckmarks">
-                            <h4 id="degreeAuditAllDiversity" class="degreeAuditCheckmarksTitle"><img src="resources/dash.png" alt="X" class="checkIconTitle"></h4>
-                            <ul class="degreeAuditCheckmarksList">
-                                <li id="degreeAuditDVUP"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditDVCC"><img src="resources/dash.png" alt="X" class="checkIconBody"></li>
-                            </ul>
-                        </td>
-                        <td class="degreeAuditData">
-                            <h4>Diversity</h4>
-                            <ul class="degreeAuditDataList">
-                                <li id="degreeAuditDVUPClassName">DVUPXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                                <li id="degreeAuditDVCCClassName">DVCCXXX <select name="semester" id="semster">
-                                         <option value="Fall">Fall</option>
-                                         <option value="Spring">Spring</option>
-                                         <option value="Winter">Winter</option>
-                                         <option value="Summer">Summer</option>
-                                     </select>
-                                     <select name="Year" id="Year">
-                                         <option value="Freshman">Freshman</option>
-                                         <option value="Sophomore">Sophomore</option>
-                                         <option value="Junior">Junior</option>
-                                         <option value="Senior">Senior</option>
-                                     </select>
-                                     <button id="classRecButton" class='addClassRecButtons btn btn-danger' onclick = "switchToClassRec()">Add</button></li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <div id="classRec" style="display: none"></div>
         </div>
     </div>
     <script type="text/javascript">
@@ -976,8 +404,96 @@
             alert("Latest year removed from four year plan!")
             createFourYearPlan()
         }
-
-
+        
+        /*
+        function createClassRec() {
+            document.getElementById("classRec").innerHTML = "";
+            const toAdd = document.getElementById("classRec");
+            
+            const tab = document.createElement("table");
+            tab.id += "Overall Table";
+            tab.className += "degreeAuditTable";
+                                         
+            const years = [];
+            fourYearPlanData.forEach((item) => {
+                years.push(item.year);
+            })
+                                         
+            const semesters = ["Fall", "Spring", "Winter", "Summer"];                             
+            
+            classRecData.forEach((item) => {
+                
+                //Row for each section
+                const indivRow = document.createElement("tr");
+                indivRow.id += item.type + "Tr";
+                indivRow.className += "degreeAuditRow";
+                
+                //Block within section
+                const indivData = document.createElement("td");
+                indivData.id += item.type + "_";
+                indivData.className += "degreeAuditData";
+                indivData.innerHTML = "<h4>" + item.type + "</h4>";
+                
+                //List of classes
+                const dataList = document.createElement("ul");
+                dataList.id = item.type + "_";
+                dataList.className += "degreeAuditDataList";
+                
+                //Each class element
+                item.classes.forEach((class) => {
+                    const classOutput = document.createElement("li");
+                    classOutput.innerText = class.classId;
+                    
+                    const semesters = document.createElement("select");
+                    semester.name = "Semester";
+                    semester.id = "Semester";
+                    
+                    const yrs = document.createElement("select");
+                    yrs.name = "Year";
+                    yrs.id = "Year";
+                    
+                    semesters.forEach((semester) => {
+                        const valu = document.createElement("option");
+                        valu.value += semester;
+                        valu.innerText = semester;
+                        
+                        semesters.appendChild(valu);
+                    })
+                    
+                    years.forEach((year) => {
+                        const valu = document.createElement("option");
+                        valu.value += year;
+                        valu.innerText = year;
+                        
+                        yrs.appendChild(valu);
+                    })
+                    
+                    classOutput.appendChild(semesters);
+                    classOutput.appendChild(yrs);
+                    
+                    const butt = document.createElement("button");
+                    butt.innerText = "Add";
+                    butt.id += "classRecButton";
+                    butt.className += 'addClassRecButtons btn btn-danger';
+                    butt.onclick = "switchToClassRec()";
+                    
+                    classOutput.appendChild(butt);
+                    
+                    dataList.appendChild(classOutput);
+                })
+                
+                
+                
+                tab.appendChild(indivRow);
+                indivRow.appendChild(indivData);
+                indivData.appendChild(dataList);
+            })
+            
+            toAdd.appendChild(tab);
+            
+        }
+        */
+        
         function createFourYearPlan() {
 
             document.getElementById("fourYearPlan").innerHTML = "";
