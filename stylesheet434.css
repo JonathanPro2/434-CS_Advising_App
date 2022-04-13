@@ -245,3 +245,23 @@ body {
 }
 
 /* Craig Phase CSS */
+.classRecLI {
+    font-size: x-large;
+    display: flex!important;
+    -webkit-box-pack: justify!important;
+    -ms-flex-pack: justify!important;
+    justify-content: space-between!important;
+    align-items: center;
+    width: 100%;
+      
+}
+
+.classRecTitle {
+    text-align: center;
+}
+
+.classRecDropdown {
+    font-size: x-large;
+    margin-top: 40px;
+    
+}

@@ -400,6 +400,7 @@
             createFourYearPlan();
             initializeAuditMap();
             updateAudit();
+            createClassRec();
         }
 
 
@@ -437,6 +438,7 @@
         function createClassRec() {
             document.getElementById("classRec").innerHTML = "";
             const toAdd = document.getElementById("classRec");
+            //toAdd.innerHTML = "Choose your needed category:"
             
             const tab = document.createElement("table");
             tab.id += "OverallTable";
@@ -447,7 +449,8 @@
                 years.push(item.year);
             })
                                          
-            const semesters = ["Fall", "Spring", "Winter", "Summer"];                             
+            const sems = ["Fall", "Spring", "Winter", "Summer"];   
+            const categories = ["Lower Level", "Upper Level", "Elective", "Upper Concentration", "Fundamental Studies", "Distributive Studies", "I-Series", "Diversity"];
             
             classRecData.forEach((item) => {
                 
@@ -456,31 +459,48 @@
                 indivRow.id += item.type + "Tr";
                 indivRow.className += "degreeAuditRow";
                 
+                const drop = document.createElement("select");
+                drop.name = "Category";
+                drop.id = "Category" + item;
+                drop.className += 'classRecDropdown';
+                
+                categories.forEach((category) => {
+                        const valu = document.createElement("option");
+                        valu.value += category;
+                        valu.innerText = category;
+                        
+                        drop.appendChild(valu)
+                    })
+                
+            
                 //Block within section
                 const indivData = document.createElement("td");
                 indivData.id += item.type + "indivData";
                 indivData.className += "degreeAuditData";
-                indivData.innerHTML = "<h4>" + item.type + "</h4>";
+                indivData.innerHTML = "<h4 class = 'classRecTitle'>" + item.type + "</h4>";
                 
                 //List of classes
                 const dataList = document.createElement("ul");
                 dataList.id = item.type + "dataList";
-                dataList.className += "degreeAuditDataList";
+                dataList.className += "degreeAuditDataList list-group list-group-flush";
                 
                 //Each class element
-                item.classes.forEach((class) => {
+                item.classes.forEach((clas) => {
+                    
                     const classOutput = document.createElement("li");
-                    classOutput.innerText = class.classId;
+                    classOutput.className += "classRecLI list-group-item";
+                    classOutput.innerText = clas.classId;
+                    
                     
                     const semesters = document.createElement("select");
-                    semester.name = "Semester"
-                    semester.id = "Semester" + class;
+                    semesters.name = "Semester";
+                    semesters.id = "Semester" + clas;
                     
                     const yrs = document.createElement("select");
                     yrs.name = "Year";
-                    yrs.id = "Year" + class;
+                    yrs.id = "Year" + clas;
                     
-                    semesters.forEach((semester) => {
+                    sems.forEach((semester) => {
                         const valu = document.createElement("option");
                         valu.value += semester;
                         valu.innerText = semester;
@@ -501,7 +521,7 @@
                     
                     const butt = document.createElement("button");
                     butt.innerText = "Add";
-                    butt.id += "classRecButton" + class;
+                    butt.id += "classRecButton" + clas;
                     butt.className += 'addClassRecButtons btn btn-danger';
                     butt.onclick = "switchToClassRec()";
                     
@@ -514,7 +534,9 @@
                 
                 tab.appendChild(indivRow)
                 indivRow.appendChild(indivData)
+                
                 indivData.appendChild(dataList)
+                toAdd.appendChild(drop)
             })
             
             toAdd.appendChild(tab)
