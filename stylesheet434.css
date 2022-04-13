@@ -199,7 +199,7 @@ body {
 }
 
 #semesterEditHead {
-    grid-column: 5/17;
+    grid-column: 2/20;
     grid-row: 2/3;
     text-align: center;
 }
@@ -236,13 +236,13 @@ body {
 
 #semesterEditSemesterTag {
     grid-column: 2/25;
-    grid-row: 27/28;
+    grid-row: 28/29;
     font-size: larger;
 }
 
 #semesterEditYearTag {
     grid-column: 2/25;
-    grid-row: 28/29;
+    grid-row: 27/28;
     font-size: larger;
 }
 

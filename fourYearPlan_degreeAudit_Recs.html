@@ -36,8 +36,8 @@
 
                     <input type="text" id="semesterEditClassInput" placeholder="CMSCXXX">
                     <p id="classEntryText">Enter a class id above</p>
-                    <p id="semesterEditSemesterTag">Semester: </p>
-                    <p id="semesterEditYearTag">Year: </p>
+                    <!-- <p id="semesterEditSemesterTag">Semester: </p>
+                    <p id="semesterEditYearTag">Year: </p> -->
 
                     <button onclick="addClassToSemesterList()" type="button" id="addClassSemesterEdit" class="btn btn-danger">Add Class</button>
 
@@ -802,11 +802,14 @@
                     semesterEditSemester = 'fall'
                     semesterEditYear = item.year
 
-                    editor = document.getElementById("semesterEditSemesterTag")
-                    editor.innerHTML = "Semester: Fall"
+                    editor = document.getElementById("semesterEditHead")
+                    editor.innerHTML = semesterEditYear + " Fall Classes"
 
-                    editor = document.getElementById("semesterEditYearTag")
-                    editor.innerHTML = "Year: " + semesterEditYear
+                    // editor = document.getElementById("semesterEditSemesterTag")
+                    // editor.innerHTML = "Semester: Fall"
+
+                    // editor = document.getElementById("semesterEditYearTag")
+                    // editor.innerHTML = "Year: " + semesterEditYear
 
                     createSemesterView(item.fall)
                 }
@@ -847,11 +850,14 @@
                     semesterEditSemester = 'winter'
                     semesterEditYear = item.year
 
+                    editor = document.getElementById("semesterEditHead")
+                    editor.innerHTML = semesterEditYear + " Winter Classes"
+
                     editor = document.getElementById("semesterEditSemesterTag")
                     editor.innerHTML = "Semester: Winter"
 
-                    editor = document.getElementById("semesterEditYearTag")
-                    editor.innerHTML = "Year: " + semesterEditYear
+                    // editor = document.getElementById("semesterEditYearTag")
+                    // editor.innerHTML = "Year: " + semesterEditYear
 
                     createSemesterView(item.winter)
                 }
@@ -891,11 +897,14 @@
                     semesterEditSemester = 'spring'
                     semesterEditYear = item.year
 
-                    editor = document.getElementById("semesterEditSemesterTag")
-                    editor.innerHTML = "Semester: Spring"
+                    editor = document.getElementById("semesterEditHead")
+                    editor.innerHTML = semesterEditYear + " Spring Classes"
 
-                    editor = document.getElementById("semesterEditYearTag")
-                    editor.innerHTML = "Year: " + semesterEditYear
+                    // editor = document.getElementById("semesterEditSemesterTag")
+                    // editor.innerHTML = "Semester: Spring"
+
+                    // editor = document.getElementById("semesterEditYearTag")
+                    // editor.innerHTML = "Year: " + semesterEditYear
 
                     createSemesterView(item.spring)
                 }
@@ -936,11 +945,14 @@
                     semesterEditSemester = 'summer'
                     semesterEditYear = item.year
 
-                    editor = document.getElementById("semesterEditSemesterTag")
-                    editor.innerHTML = "Semester: Summer"
+                    editor = document.getElementById("semesterEditHead")
+                    editor.innerHTML = semesterEditYear + " Summer Classes"
 
-                    editor = document.getElementById("semesterEditYearTag")
-                    editor.innerHTML = "Year: " + semesterEditYear
+                    // editor = document.getElementById("semesterEditSemesterTag")
+                    // editor.innerHTML = "Semester: Summer"
+
+                    // editor = document.getElementById("semesterEditYearTag")
+                    // editor.innerHTML = "Year: " + semesterEditYear
 
                     createSemesterView(item.summer)
                 }
