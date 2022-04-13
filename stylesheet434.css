@@ -235,7 +235,14 @@ body {
     font-size: large;
 }
 
-#semesterEditSemesterTag {
+#requestPermissionsTag {
+    grid-column: 2/20;
+    grid-row: 25/26;
+    font-size: x-large;
+}
+
+
+/* #semesterEditSemesterTag {
     grid-column: 2/25;
     grid-row: 28/29;
     font-size: larger;
@@ -244,6 +251,12 @@ body {
 #semesterEditYearTag {
     grid-column: 2/25;
     grid-row: 27/28;
+    font-size: larger;
+} */
+
+#requestPermissionsButton {
+    grid-column: 2/10;
+    grid-row: 23/25;
     font-size: larger;
 }
 
