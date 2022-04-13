@@ -1406,7 +1406,7 @@
                 let checkClassId = false
 
                 tempSemesterList.forEach((item) => {
-                    if (item.classId === (inputVal + "").toUpperCase()) {
+                    if (item.classId === (inputVal + "").toUpperCase() && ((inputVal + "").toUpperCase()).includes("X") != true) {
                         checkClassId = true
                     }
                 })
