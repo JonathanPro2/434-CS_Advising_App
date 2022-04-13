@@ -73,7 +73,7 @@
                                 <li id="degreeAuditCMSC351"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                                 <li id="degreeAuditMATH140"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                                 <li id="degreeAuditMATH141"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
-                                <li id="degreeAuditSTAT400"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
+                                <li id="degreeAuditSTAT4XX"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                                 <li id="degreeAuditMATHXXX"><img src="resources/x.png" alt="X" class="checkIconBody"></li>
                             </ul>
                         </td>
@@ -88,8 +88,8 @@
                                 <li>CMSC351</li>
                                 <li>MATH140</li>
                                 <li>MATH141</li>
-                                <li id="degreeAuditSTAT400ClassName">STAT4XX *must have MATH141 as a prerequisite</li>
-                                <li id="degreeAuditMATHXXXClassName">MATHXXX *must have MATH141 as a prerequisite</li>
+                                <li id="degreeAuditSTAT4XXClassName">STAT4XX *must have MATH141 or higher as a prerequisite</li>
+                                <li id="degreeAuditMATHXXXClassName">MATHXXX *must have MATH141 or higher as a prerequisite</li>
                             </ul>
                         </td>
                     </tr>
@@ -393,7 +393,7 @@
         }];
 
         // List of all CMSC graduation requirements
-        let requirements = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATHXXX",
+        let requirements = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT4XX", "MATHXXX",
             "Upper1", "Upper2", "Upper3", "Upper4", "Upper5", "Elective1", "Elective2", "UpperConcentration1", "UpperConcentration2",
             "UpperConcentration3", "UpperConcentration4", "FSAW", "FSPW", "FSOC", "FSMA", "FSAR", "DSHU1", "DSHU2", "DSHS1", "DSHS2",
             "DSNL", "DSNS", "DSSP1", "DSSP2", "I1", "I2", "DVUP", "DVCC"
@@ -401,10 +401,21 @@
         // Names of map key for each degree audit section
         let overallRequirements = ["AllOverall", "AllLower", "AllUpper", "AllElective", "AllUpperConcentration", "AllFundamental", "AllDistributive", "AllI", "AllDiversity"];
         // Array that stores all classes the student is currently registered for
-        let classesTaken = ["CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "MATH140", "MATH141", "STAT400", "MATH241", "CMSC420", "CMSC424",
-            "CMSC434", "CMSC436", "CMSC451", "CMSC320", "CMSC389E", "ARMY401", "ARMY402", "ARMY403", "ARMY404", "ENGL101", "ENGL393", "COMM107", "CLAS170", "ASTR100",
-            "GVPT170", "ENES140", "ENES210", "HISP200", "PHYS121", "PSYC100", "AMST101"
-        ];
+        let classesTaken = [];
+        fourYearPlanData.forEach(year => {
+            year.fall.forEach(ele => {
+                classesTaken.push(ele.classId);
+            });
+            year.winter.forEach(ele => {
+                classesTaken.push(ele.classId);
+            });
+            year.spring.forEach(ele => {
+                classesTaken.push(ele.classId);
+            });
+            year.summer.forEach(ele => {
+                classesTaken.push(ele.classId);
+            });
+        });
         
         // Map that stores booleans for whether or not a requirement is currently fulfilled
         let auditMap = new Map();
@@ -1005,17 +1016,24 @@
                 iSeries = [];
             classesTaken.forEach(ele => {
                 if (ele == "CMSC131" || ele == "CMSC132" || ele == "CMSC216" || ele == "CMSC250" || ele == "CMSC330" || ele == "CMSC351" ||
-                    ele == "MATH140" || ele == "MATH141" || ele == "STAT400") {
+                    ele == "MATH140" || ele == "MATH141") {
                     let editor = document.getElementById(`degreeAudit${ele}`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     auditMap.set(ele, true);
                 }
-                if (ele == "MATH241") {
+                if (ele == "STAT400" || ele == "STAT401" || ele == "STAT410" || ele == "STAT430") {
+                    let editor = document.getElementById(`degreeAuditSTAT4XX`);
+                    editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
+                    auditMap.set("STAT4XX", true);
+                    editor = document.getElementById(`degreeAuditSTAT4XXClassName`);
+                    editor.innerText = ele + " (STAT4XX with MATH141 or higher as a prerequisite)";
+                }
+                if (ele == "MATH241" || ele == "MATH401" || ele == "MATH461") {
                     let editor = document.getElementById(`degreeAuditMATHXXX`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     auditMap.set("MATHXXX", true);
                     editor = document.getElementById(`degreeAuditMATHXXXClassName`);
-                    editor.innerText = ele + " (MATHXXX with MATH141 as a prerequisite)";
+                    editor.innerText = ele + " (MATHXXX with MATH141 or higher as a prerequisite)";
                 }
                 if (ele == "CMSC411" || ele == "CMSC412" || ele == "CMSC414" || ele == "CMSC416" || ele == "CMSC417" || ele == "CMSC420" ||
                     ele == "CMSC421" || ele == "CMSC422" || ele == "CMSC423" || ele == "CMSC424" || ele == "CMSC426" || ele == "CMSC427" ||
@@ -1029,7 +1047,8 @@
                     ele == "CMSC389E" || ele == "CMSC388A" || ele == "CMSC388B") {
                     electives.push(ele);
                 }
-                if (ele == "ARMY401" || ele == "ARMY402" || ele == "ARMY403" || ele == "ARMY404") {
+                if (ele == "ARMY401" || ele == "ARMY402" || ele == "ARMY403" || ele == "ARMY404" || ele == "MATH401" || ele == "MATH461" ||
+                    ele == "STAT401" || ele == "STAT410" || ele == "STAT430") {
                     upperConcentrations.push(ele);
                 }
                 if (ele == "CLAS170" || ele == "ENES210" || ele == "HISP200") {
@@ -1056,7 +1075,7 @@
                     editor.innerText = ele + " (FSOC)";
                     auditMap.set("FSOC", true);
                 }
-                if (ele == "MATH140") {
+                if (ele == "MATH140" || ele == "MATH241" || ele == "MATH401" || ele == "MATH461") {
                     let editor = document.getElementById(`degreeAuditFSMA`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     editor = document.getElementById(`degreeAuditFSMAClassName`);
@@ -1068,7 +1087,7 @@
                     editor.innerText = ele + " (FSAR)";
                     auditMap.set("FSAR", true);
                 }
-                if (ele == "CLAS170" || ele == "HISP200") {
+                if (ele == "CLAS170" || ele == "HISP200" || ele == "MUSC205" || ele == "ENGL321") {
                     dshus.push(ele);
                 }
                 if (ele == "ASTR100") {
@@ -1085,13 +1104,13 @@
                     editor.innerText = ele + " (DSNL)";
                     auditMap.set("DSNL", true);
                 }
-                if (ele == "GVPT170" || ele == "PSYC100") {
+                if (ele == "GVPT170" || ele == "PSYC100" || ele == "CCJS100") {
                     dshses.push(ele);
                 }
                 if (ele == "ENES140" || ele == "ENES210") {
                     dssps.push(ele);
                 }
-                if (ele == "HISP200") {
+                if (ele == "HISP200" || ele == "MUSC205") {
                     let editor = document.getElementById(`degreeAuditDVUP`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     editor = document.getElementById(`degreeAuditDVUPClassName`);
@@ -1170,7 +1189,7 @@
                 }
             });
             if (auditMap.get("CMSC131") && auditMap.get("CMSC132") && auditMap.get("CMSC216") && auditMap.get("CMSC250") && auditMap.get("CMSC330") &&
-                auditMap.get("CMSC351") && auditMap.get("MATH140") && auditMap.get("MATH141") && auditMap.get("STAT400") && auditMap.get("MATHXXX")) {
+                auditMap.get("CMSC351") && auditMap.get("MATH140") && auditMap.get("MATH141") && auditMap.get("STAT4XX") && auditMap.get("MATHXXX")) {
                 let editor = document.getElementById(`degreeAuditAllLower`);
                 editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconTitle\">";
                 auditMap.set(`AllLower`, true);
@@ -1256,10 +1275,10 @@
                 let editor = document.getElementById(`degreeAuditI${i}ClassName`);
                 editor.innerText = "3 Credit I Series";
             }
-            let editor = document.getElementById(`degreeAuditSTAT400ClassName`);
-            editor.innerText = "STAT4XX *must have MATH141 as a prerequisite";
+            let editor = document.getElementById(`degreeAuditSTAT4XXClassName`);
+            editor.innerText = "STAT4XX *must have MATH141 or higher as a prerequisite";
             editor = document.getElementById(`degreeAuditMATHXXXClassName`);
-            editor.innerText = "MATHXXX *must have MATH141 as a prerequisite";
+            editor.innerText = "MATHXXX *must have MATH141 or higher as a prerequisite";
             editor = document.getElementById(`degreeAuditFSAWClassName`);
             editor.innerText = "Academic Writing (FSAW)";
             editor = document.getElementById(`degreeAuditFSPWClassName`);
