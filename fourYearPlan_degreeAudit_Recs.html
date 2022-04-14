@@ -453,7 +453,7 @@
                 credits: '3'
             }, {
                 classId: 'CMSC420',
-                credits: '4'
+                credits: '3'
             }, {
                 classId: 'CMSC434',
                 credits: '3'
@@ -1100,7 +1100,7 @@
                     editor.innerText = ele + " (FSAW)";
                     auditMap.set("FSAW", true);
                 }
-                if (ele == "ENGL393") {
+                if (ele == "ENGL393" || ele == "ENGL398B") {
                     let editor = document.getElementById(`degreeAuditFSPW`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     editor = document.getElementById(`degreeAuditFSPWClassName`);
@@ -1136,7 +1136,7 @@
                     editor.innerText = ele + " (DSNS)";
                     auditMap.set("DSNS", true);
                 }
-                if (ele == "PHYS121") {
+                if (ele == "PHYS121" || ele == "GEOL211") {
                     let editor = document.getElementById(`degreeAuditDSNL`);
                     editor.innerHTML = "<img src=\"resources/check.png\" alt=\"$\" class=\"checkIconBody\">";
                     editor = document.getElementById(`degreeAuditDSNLClassName`);
@@ -1146,7 +1146,7 @@
                 if (ele == "GVPT170" || ele == "PSYC100" || ele == "CCJS100") {
                     dshses.push(ele);
                 }
-                if (ele == "ENES140" || ele == "ENES210") {
+                if (ele == "ENES140" || ele == "ENES210" || ele == "BMGT289A") {
                     dssps.push(ele);
                 }
                 if (ele == "HISP200" || ele == "MUSC205") {
