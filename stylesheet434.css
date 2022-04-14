@@ -31,35 +31,36 @@ body {
 
 .startScreen {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10%, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(10%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(5%, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(5%, 1fr));
     height: 100%;
     width: 100%;
     /* overflow: hidden; */
 }
 
 .logo {
-    grid-column-start: 2;
-    grid-column-end: 7;
-    grid-row-start: 3;
-    grid-row-end: 9;
-    width: 90%;
+    grid-column: 15/19;
+    grid-row: 4/8;
     height: 100%;
+    width: 100%;
+}
+
+.calender {
+    grid-column: 2/14;
+    grid-row: 3/16;
+    height: 100%;
+    width: 100%;
 }
 
 #welcomeHeader {
-    grid-column-start: 7;
-    grid-column-end: 10;
-    grid-row-start: 4;
-    grid-row-end: 5;
+    grid-column: 15/19;
+    grid-row: 8/9;
     text-align: center;
 }
 
 #umdappHeader {
-    grid-column-start: 7;
-    grid-column-end: 10;
-    grid-row-start: 4;
-    grid-row-end: 7;
+    grid-column: 15/19;
+    grid-row: 9/12;
     text-align: center;
 }
 
@@ -70,10 +71,8 @@ body {
 
 #startAppButton {
     display: flex;
-    grid-column-start: 7;
-    grid-column-end: 10;
-    grid-row-start: 7;
-    grid-row-end: 8;
+    grid-column: 15/19;
+    grid-row: 14/16;
     font-size: xx-large;
     align-items: center;
     justify-content: center;
@@ -241,19 +240,6 @@ body {
     font-size: x-large;
 }
 
-
-/* #semesterEditSemesterTag {
-    grid-column: 2/25;
-    grid-row: 28/29;
-    font-size: larger;
-}
-
-#semesterEditYearTag {
-    grid-column: 2/25;
-    grid-row: 27/28;
-    font-size: larger;
-} */
-
 #requestPermissionsButton {
     grid-column: 2/10;
     grid-row: 23/25;
@@ -368,4 +354,11 @@ body {
     bottom: 0;
     height: 40%;
     width: 100%;
+}
+
+#Category2 {
+    position: relative;
+    top: 0;
+    margin-top: 100px;
+    margin-left: 25px;
 }
